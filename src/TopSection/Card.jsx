@@ -1,15 +1,30 @@
-import CardOne from "./CardOne"
-import CardThree from "./CardThree"
-import CardTwo from "./CardTwo"
+import PropTypes from "prop-types";
+const Card = ({ backgroundColor,title, value, description }) => {
 
-const Card = () => {
+ const divStyle ={
+    width : "15rem",
+    height : "100px",
+    borderRadius: "8px",
+    padding: "8px",
+    backgroundColor: backgroundColor,
+ }
   return (
-    <div className="flex w-3/5 gap-6">
-        <CardOne/>
-        <CardTwo/>
-        <CardThree/>
+    <div style={divStyle}>
+      <p className="text-[8px] font-bold">{title}</p>
+      <div className="flex flex-col items-center mt-4">
+        <p className="font-bold">{value}</p>
+        <p className="text-[8px]">{description}</p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
+
+
+Card.propTypes = {
+ backgroundColor: PropTypes.string.isRequired,
+ title: PropTypes.string.isRequired,
+ value: PropTypes.string.isRequired,
+ description: PropTypes.string.isRequired
+};
