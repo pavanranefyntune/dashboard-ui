@@ -1,9 +1,10 @@
 import Member from "./Member";
 import {IoAdd} from "react-icons/io5";
-import members from "../../src/memberdata"
+import {useSelector} from "react-redux"
 
 const TeamMember = () => {
 
+  const members = useSelector(state => state.members.memberList)
 
 
   return (
@@ -22,6 +23,7 @@ const TeamMember = () => {
         </div>
         <div className="flex items-center">
           <button className="text-xs font-bold flex items-center gap-2 bg-[#AAC9FF] rounded-md px-1 py-2"
+          onClick={() => console.log(members)}
           >
             <IoAdd  className="bg-white rounded-full"/>
             Add More Member</button>

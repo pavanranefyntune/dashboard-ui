@@ -11,7 +11,7 @@ const membersSlice = createSlice({
     initialState, 
     reducers : {
         addMember : (state, action) => {
-           state.memberList += action.payload
+           state.memberList = [...state.memberList, action.payload]
         }
     }
 })
