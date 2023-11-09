@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMember } from '../Redux/membersSlice';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FaUserAlt } from 'react-icons/fa';
 
 
 // eslint-disable-next-line react/prop-types
@@ -72,13 +73,14 @@ if (!imgUrl.trim()) {
 
           </div>
           <form onSubmit={handleSubmit} className='flex flex-col items-center gap-2'>
-            <div>
+            <div className='flex flex-col items-center'>
+            <FaUserAlt className='w-[5rem] h-[5rem]'/>
               <input
-                type="text"
+                type="file"
                 value={imgUrl}
                 onChange={(e) => setImgUrl(e.target.value)}
-                placeholder='Enter Image URL'
-                className="mt-1 p-2 w-full border rounded-md"
+                className="mt-1 p-2 w-[10rem] border rounded-md"
+                
               />
                 {imgUrlError && <p className="text-red-500">{imgUrlError}</p>}
             </div>
