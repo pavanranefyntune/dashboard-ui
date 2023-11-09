@@ -4,14 +4,20 @@ import Cards from "./TopSection/Cards";
 import MidSection from "./MidSection/MidSection";
 import TopStore from "./Bottom/TopStore";
 import RightSection from "./RightSection/RightSection";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import MemberDetails from "./memberDetails/MemberDetails";
+
 
 const App = () => {
 
   return (
+    <Router>
     <div className="flex w-full h-screen overflow-x-hidden relative box-border p-0 m-0">
       <div className="w-[15vw] sticky top-0 z-10 bg-white">
         <SideBar />
       </div>
+      <Routes>
+        <Route path="/" element={
       <div className="w-[85vw] flex flex-col  bg-[#EFF3F4]">
         <div className="sticky top-0 z-10 bg-[#EFF3F4] py-2 px-6">
         <Navbar />
@@ -28,7 +34,19 @@ const App = () => {
           </div>
         </div>
       </div>
+      }>
+      </Route>
+      <Route
+      path="/userDetails/:id"
+      element={
+        <MemberDetails/>
+      }
+      >
+
+      </Route>
+      </Routes>
     </div>
+    </Router>
   );
 };
 

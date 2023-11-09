@@ -1,8 +1,9 @@
 import Member from "./Member";
 import {IoAdd} from "react-icons/io5";
-import {useSelector} from "react-redux"
+import {useSelector} from "react-redux";
 
-const TeamMember = () => {
+// eslint-disable-next-line react/prop-types
+const TeamMember = ({openModal}) => {
 
   const members = useSelector(state => state.members.memberList)
 
@@ -12,18 +13,19 @@ const TeamMember = () => {
         <p className="font-bold ml-2">Team Member</p>
         <div className="bg-white flex flex-col gap-2 p-2">
           {
-            members.map((member, index) => (
-              <Member key={index}
+            members.map((member) => (
+              <Member key={member.id}
               name={member.name}
               designation={member.designation}
               userpic={member.userpic}
+              id ={member.id}
               />
             ))
           }
         </div>
         <div className="flex items-center">
           <button className="text-xs font-bold flex items-center gap-2 bg-[#AAC9FF] rounded-md px-1 py-2"
-          onClick={() => console.log(members)}
+          onClick={openModal}
           >
             <IoAdd  className="bg-white rounded-full"/>
             Add More Member</button>
@@ -32,4 +34,4 @@ const TeamMember = () => {
   )
 }
 
-export default TeamMember
+export default TeamMember;
