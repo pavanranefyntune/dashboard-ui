@@ -9,16 +9,16 @@ const Cards = () => {
         description:"From the running month"
     },
     {
-        backgroundColor:"#92E3B8",
-        title:"Total Earning",
-        value:"242.65K",
-        description:"From the running month"
+        backgroundColor:"#AAC9FF",
+        title:"Average Earning",
+        value:"17.347K",
+        description:"Daily Earning of this month"
     },
     {
-        backgroundColor:"#AAC9FF",
-        title:"Total Earning",
-        value:"242.65K",
-        description:"From the running month"
+        backgroundColor:"#92E3B8",
+        title:"Conversion Rate",
+        value:"74.86%",
+        description:"+6.04% greater than last week"
     }
  ]
 
