@@ -1,4 +1,4 @@
-import Card from "../TopSection/Card"
+import Card from "../TopSection/Card";
 
 const Cards = () => {
  const cardObj = [
@@ -23,7 +23,7 @@ const Cards = () => {
  ]
 
   return (
-    <div className="flex w-4/5 gap-6">
+    <div className="flex lg:flex-row flex-col lg:w-full w-[50vw] gap-6">
      {
         cardObj.map((item,index) => (
             <Card key={index} backgroundColor={item.backgroundColor}

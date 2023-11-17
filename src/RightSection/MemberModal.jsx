@@ -16,6 +16,22 @@ const [nameError, setNameError] = useState('');
 const [designationError, setDesignationError] = useState('');
 
 
+const handleImageChange = (e) => {
+  const file = e.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImgUrl(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  }
+};
+
+
+
   const value = {
     id:new Date().getTime(),
     "userpic" : imgUrl,
@@ -35,7 +51,7 @@ const [designationError, setDesignationError] = useState('');
 
 
 if (!imgUrl.trim()) {
-    setImgUrlError('Image URL is required');
+    setImgUrlError('Choose Image');
     return;
   }
 
@@ -77,8 +93,8 @@ if (!imgUrl.trim()) {
             <FaUserAlt className='w-[5rem] h-[5rem]'/>
               <input
                 type="file"
-                value={imgUrl}
-                onChange={(e) => setImgUrl(e.target.value)}
+                accept="image/*"
+                onChange={handleImageChange}
                 className="mt-1 p-2 w-[10rem] border rounded-md"
                 
               />
@@ -107,7 +123,7 @@ if (!imgUrl.trim()) {
             <div className="mt-4">
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                className="bg-black text-white px-4 py-2 rounded-md"
               >
                 Submit
               </button>
@@ -116,7 +132,7 @@ if (!imgUrl.trim()) {
         </div>
       </div>
     </div>
-  );
+  );             
 };
 
 export default MemberModal;

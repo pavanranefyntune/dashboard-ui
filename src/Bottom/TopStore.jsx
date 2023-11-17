@@ -1,6 +1,6 @@
 const TopStore = () => {
     return (
-      <div className="py-4 w-4/5 bg-white rounded-md">
+      <div className="py-4 w-full bg-white rounded-md mr-6">
         <div className="flex justify-between ml-2 mb-2 px-2">
             <p className="font-bold">Top Store</p>
             <p className="px-2 py-1 rounded-md text-xs bg-[#CDF463]">Share</p>

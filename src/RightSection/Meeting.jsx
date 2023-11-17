@@ -15,7 +15,7 @@ const Meeting = () => {
             </div>
         </div>
 
-        <div className="flex">
+        <div className="flex ">
             <div className="flex">
             <img src={userpic} alt="" className="w-[25px] h-[25px] text-center rounded-full"/>
             <img src={userpic} alt="" className="w-[25px] h-[25px] text-center rounded-full ml-[-10px]"/>
@@ -24,7 +24,7 @@ const Meeting = () => {
             <p className="text-xs font-bold text-center">They will conduct the meeting</p>
         </div>
 
-        <p className="text-xs font-bold text-white bg-black p-1 rounded-md w-[10rem]">Click for meeting link</p>
+        <p className="text-xs text-center font-bold text-white bg-black p-1 rounded-md w-22">Click for meeting link</p>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 const Card = ({ backgroundColor,title, value, description }) => {
 
  const divStyle ={
-    width : "15rem",
+    width : "100%",
     height : "100px",
     borderRadius: "8px",
     padding: "8px",
