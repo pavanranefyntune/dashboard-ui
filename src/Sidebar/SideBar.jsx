@@ -1,9 +1,40 @@
-import sidebarData from './sidebar.constant'
+import {useState} from "react";
+import sidebarData from './sidebar.constant';
 import {FiLogOut} from "react-icons/fi";
-import userpic from '../../src/assets/user.jpg'
+import userpic from '../../src/assets/user.jpg';
 import {Link} from "react-router-dom";
 
 const SideBar = () => {
+ const [sideBarData, setSideBarData] = useState(sidebarData)
+
+ const handleDrag = (e, id) => {
+  e.dataTransfer.setData("id", id);
+};
+
+const dragOver = (e) => {
+  e.preventDefault();
+};
+
+ const handleDrop = (e, droppedItemId) => {
+  const draggedId = e.dataTransfer.getData("id");
+
+  const item = sideBarData.find((item) => item.id == draggedId);
+
+  if (!item) {
+    return;
+  }
+
+  const updatedSidebarData = sideBarData.filter((item) => item.id != draggedId);
+
+  const targetIndex = updatedSidebarData.findIndex((item) => item.id === droppedItemId);
+
+  if (targetIndex !== -1) {
+    updatedSidebarData.splice(targetIndex, 0, item);
+    setSideBarData(updatedSidebarData);
+  }
+};
+
+
   return (
     <div className="flex flex-col p-2">
       <Link to="/">
@@ -11,9 +42,13 @@ const SideBar = () => {
       </Link>
     <div className="flex flex-col justify-between gap-3 lg:text-sm text-[0.5rem] md:text-[0.7rem] font-bold">
 
-      { sidebarData.map((sData) => (
-        <Link to={sData.path} key={sData.id} >
-          <p className="lg:p-[8px] rounded-md hover:bg-[#CDF463] cursor-pointer gap-2 flex items-center" draggable>{<sData.icon/>}{sData.name}</p>
+      { sideBarData.map((sData) => (
+        <Link to={sData.path} key={sData.id}  draggable
+        onDragStart={(e) => handleDrag(e, sData.id)}
+        onDragOver={(e) => dragOver(e)}
+        onDrop={(e) => handleDrop(e, sData.id)}
+        >
+          <p className="lg:p-[8px] rounded-md hover:bg-[#CDF463] cursor-pointer gap-2 flex items-center">{<sData.icon/>}{sData.name}</p>
            </Link> 
      )) }   
      
