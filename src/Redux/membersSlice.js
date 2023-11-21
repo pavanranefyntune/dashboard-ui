@@ -5,7 +5,6 @@ const initialState = {
     memberList : members,
 }
 
-
 const membersSlice = createSlice({
     name:"members",
     initialState, 
@@ -16,6 +15,12 @@ const membersSlice = createSlice({
     }
 })
 
+
 export const {addMember} = membersSlice.actions;
 
+
 export default membersSlice.reducer;
+
+
+
+

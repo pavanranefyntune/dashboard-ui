@@ -1,16 +1,20 @@
 import {SlArrowRight} from "react-icons/sl";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 // eslint-disable-next-line react/prop-types
 const Member = ({name, designation, userpic, id}) => {
+
+  const darkMode = useSelector(state => state.theme.darkMode)
+
   return (
-    <div className="flex items-center gap-2 w-30 bg-[#EFF3F4] rounded-md justify-between p-1">
+    <div className={`flex items-center gap-2 w-30 ${darkMode ? "bg-[#23272F]" : "bg-[#EFF3F4]"} rounded-md justify-between p-1`}>
       <div className="flex gap-2 items-center">
       <img src={userpic} alt="" className='w-6 h-6 rounded-full object-cover' />
       <div>
-        <p className='text-[12px] font-bold'>{name}</p>
-        <p className='text-[8px]'>{designation}</p>
+        <p className={`text-[12px] font-bold ${darkMode && "text-white"}`}>{name}</p>
+        <p className={`text-[8px] ${darkMode && "text-gray-400"}`}>{designation}</p>
       </div>
       </div>
       <div className='mr-2'>

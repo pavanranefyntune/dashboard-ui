@@ -6,12 +6,13 @@ import {useSelector} from "react-redux";
 const TeamMember = ({openModal}) => {
 
   const members = useSelector(state => state.members.memberList)
+  const darkMode = useSelector(state => state.theme.darkMode)
 
 
   return (
-    <div className="bg-white p-1 flex flex-col items-center py-2">
-        <p className="font-bold ml-2">Team Member</p>
-        <div className="bg-white flex flex-col gap-2 p-2">
+    <div className={`${darkMode ? "bg-[#333A45]" : "bg-white"} p-1 flex flex-col items-center py-2`}>
+        <p className={`font-bold ml-2 ${darkMode && "text-white"}`}>Team Member</p>
+        <div className={`${darkMode ? "bg-[#333A45]" : "bg-white"} flex flex-col gap-2 p-2`}>
           {
             members.map((member) => (
               <Member key={member.id}

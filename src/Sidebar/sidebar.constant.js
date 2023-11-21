@@ -1,6 +1,6 @@
 import {BiSolidDashboard} from "react-icons/bi";
 import {BiStats} from "react-icons/bi";
-import {GrTransaction} from "react-icons/gr";
+import {BiSortAlt2 } from "react-icons/bi";
 import {RiTeamFill} from "react-icons/ri";
 import {IoIosStats} from "react-icons/io";
 import {IoIosSettings} from "react-icons/io";
@@ -22,7 +22,7 @@ const sideBarData = [
     {
         id: 3,
         name: "Transaction",
-        icon: GrTransaction,
+        icon: BiSortAlt2 ,
         path: "/",
     },
     {

@@ -1,20 +1,26 @@
+import {useSelector} from "react-redux";
+
+
 const TopStore = () => {
+
+  const darkMode = useSelector(state => state.theme.darkMode)
+
     return (
-      <div className="py-4 w-full bg-white rounded-md mr-6">
+      <div className={`py-4 w-full ${darkMode ? "bg-[#333A45]"  :"bg-white"} rounded-md mr-6`}>
         <div className="flex justify-between ml-2 mb-2 px-2">
-            <p className="font-bold">Top Store</p>
+            <p className={`font-bold ${darkMode && "text-white"}`}>Top Store</p>
             <p className="px-2 py-1 rounded-md text-xs bg-[#CDF463]">Share</p>
         </div>
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th className="text-left px-2 py-1 text-sm border-b border-gray-300 text-gray-300 font-normal">Store Name</th>
-              <th className="text-left px-2 py-1 text-sm border-b border-gray-300 text-gray-300 font-normal">Location</th>
-              <th className="text-left px-2 py-1 text-sm border-b border-gray-300 text-gray-300 font-normal">Sell</th>
-              <th className="text-left px-2 py-1 text-sm border-b border-gray-300 border-bottom-2 text-gray-300 font-normal">Amount</th>
+              <th className="text-left px-2 py-1 text-sm border-b border-gray-400 text-gray-300 font-normal">Store Name</th>
+              <th className="text-left px-2 py-1 text-sm border-b border-gray-400 text-gray-300 font-normal">Location</th>
+              <th className="text-left px-2 py-1 text-sm border-b border-gray-400 text-gray-300 font-normal">Sell</th>
+              <th className="text-left px-2 py-1 text-sm border-b border-gray-400 border-bottom-2 text-gray-300 font-normal">Amount</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={`${darkMode && "text-white"}`}>
             <tr>
               <td className="text-left px-2 py-1 text-sm">Solaris Sparkle</td>
               <td className="text-left px-2 py-1 text-sm">Crimson Dusk</td>
