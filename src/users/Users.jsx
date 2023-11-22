@@ -58,7 +58,7 @@ const Users = () => {
   }
 
   return (
-    <div className="flex flex-col ms-[15vw] w-[85vw] bg-[#EFF3F4] p-4">
+    <div className="flex flex-col ms-[15vw] w-[85vw] bg-[#EFF3F4] p-4 ">
     <header className="text-[2rem] text-bold text-center mb-2">Users</header>
     <div className="flex flex-col items-center">
     <p className="text-gray-500 mb-1">{users.length} users found</p>

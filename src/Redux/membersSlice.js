@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
-import members  from "../memberdata";
+// import members  from "../memberdata";
 
 const initialState = {
-    memberList : members,
+    memberList : []
 }
 
 const membersSlice = createSlice({
@@ -20,7 +20,3 @@ export const {addMember} = membersSlice.actions;
 
 
 export default membersSlice.reducer;
-
-
-
-

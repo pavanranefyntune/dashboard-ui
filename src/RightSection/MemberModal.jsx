@@ -2,41 +2,28 @@ import  { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMember } from '../Redux/membersSlice';
 import { AiOutlineClose } from 'react-icons/ai';
-import { FaUserAlt } from 'react-icons/fa';
 
 
 // eslint-disable-next-line react/prop-types
 const MemberModal = ({closeModal}) => {
-  const [imgUrl, setImgUrl] = useState('');
+
   const [name, setName] = useState('');
-  const [designation, setDesignation] = useState('');
+  const [email, setEmail] = useState('');
+  const [gender, setGender] = useState('');
+  const [status, setStatus] = useState('');
 
-const [imgUrlError, setImgUrlError] = useState('');
+
 const [nameError, setNameError] = useState('');
-const [designationError, setDesignationError] = useState('');
-
-
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-
-  if (file) {
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImgUrl(reader.result);
-    };
-
-    reader.readAsDataURL(file);
-  }
-};
-
-
+const [emailError, setEmailError] = useState('');
+const [genderError, setGenderError] = useState('');
+const [statusError, setStatusError] = useState('');
 
   const value = {
     id:new Date().getTime(),
-    "userpic" : imgUrl,
     "name" : name,
-    "designation" : designation,
+    "email" : email,
+    "gender" : gender,
+    "status" : status,
   }
   const dispatch = useDispatch()
 
@@ -45,30 +32,35 @@ const handleImageChange = (e) => {
     
     e.preventDefault();
 
-   setImgUrlError('');
    setNameError('');
-   setDesignationError('');
-
-
-if (!imgUrl.trim()) {
-    setImgUrlError('Choose Image');
-    return;
-  }
+   setEmailError('');
+   setGenderError('');
+   setStatusError('');
 
  if (!name.trim()) {
     setNameError('Member Name is required');
     return;
   }
 
-  if (!designation.trim()) {
-    setDesignationError('Member Designation is required');
+  if (!email.trim()) {
+    setEmailError('Member Email is required');
+    return;
+  }
+
+  if (!gender.trim()) {
+    setGenderError('Member Gender is required');
+    return;
+  }
+
+  if (!status.trim()) {
+    setStatusError('Member Status is required');
     return;
   }
 
 
     dispatch(addMember(value))
     closeModal();
-    console.log('Member Added:', { imgUrl, name, designation});
+    console.log('Member Added:', { name, email, gender, status});
     
   };
 
@@ -89,17 +81,6 @@ if (!imgUrl.trim()) {
 
           </div>
           <form onSubmit={handleSubmit} className='flex flex-col items-center gap-2'>
-            <div className='flex flex-col items-center'>
-            <FaUserAlt className='w-[5rem] h-[5rem]'/>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="mt-1 p-2 w-[10rem] border rounded-md"
-                
-              />
-                {imgUrlError && <p className="text-red-500">{imgUrlError}</p>}
-            </div>
             <div>
               <input
                 type="text"
@@ -113,12 +94,57 @@ if (!imgUrl.trim()) {
             <div>
               <input
                 type="text"
-                value={designation}
-                onChange={(e) => setDesignation(e.target.value)}
-                placeholder='Enter Member Designation'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder='Enter Member Email'
                 className="mt-1 p-2 w-full border rounded-md"
               />
-                {designationError && <p className="text-red-500">{designationError}</p>}
+                {emailError && <p className="text-red-500">{emailError}</p>}
+            </div>
+            <div>
+              <label>Gender:</label>
+              <div>
+                <input
+                  type="radio"
+                  value="male"
+                  checked={gender === 'male'}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                <label htmlFor="male" className="ml-1">Male</label>
+
+                <input
+                  type="radio"
+                  value="female"
+                  checked={gender === 'female'}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="ml-4"
+                />
+                <label htmlFor="female" className="ml-1">Female</label>
+              </div>
+              {genderError && <p className="text-red-500">{genderError}</p>}
+            </div>
+
+            <div>
+              <label>Status:</label>
+              <div>
+                <input
+                  type="radio"
+                  value="active"
+                  checked={status === 'active'}
+                  onChange={(e) => setStatus(e.target.value)}
+                />
+                <label htmlFor="active" className="ml-1">Active</label>
+
+                <input
+                  type="radio"
+                  value="inactive"
+                  checked={status === 'inactive'}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="ml-4"
+                />
+                <label htmlFor="inactive" className="ml-1">Inactive</label>
+              </div>
+              {statusError && <p className="text-red-500">{statusError}</p>}
             </div>
             <div className="mt-4">
               <button
