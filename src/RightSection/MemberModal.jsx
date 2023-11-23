@@ -7,6 +7,23 @@ import { AiOutlineClose } from 'react-icons/ai';
 // eslint-disable-next-line react/prop-types
 const MemberModal = ({closeModal}) => {
 
+ // Function to create data by using http POST method
+
+  const createMembers = async () => {
+    const response = await fetch("https://gorest.co.in/public/v2/users" , {
+      method: "POST",
+      headers : {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer dfc6f5ba1634462bf2ee5934798c1223bdeb45318cfe254fe838509506a983eb',
+      },
+      body: JSON.stringify(value)
+    })
+
+    const result = await response.json();
+    console.log("result",result)
+  }
+
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
@@ -19,12 +36,13 @@ const [genderError, setGenderError] = useState('');
 const [statusError, setStatusError] = useState('');
 
   const value = {
-    id:new Date().getTime(),
     "name" : name,
     "email" : email,
     "gender" : gender,
     "status" : status,
+
   }
+  console.log(value.id)
   const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
@@ -36,6 +54,7 @@ const [statusError, setStatusError] = useState('');
    setEmailError('');
    setGenderError('');
    setStatusError('');
+   createMembers();
 
  if (!name.trim()) {
     setNameError('Member Name is required');

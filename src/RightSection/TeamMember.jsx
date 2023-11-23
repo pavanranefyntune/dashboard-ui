@@ -3,10 +3,10 @@ import {IoAdd} from "react-icons/io5";
 import {useSelector, useDispatch} from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { addMember } from "../Redux/membersSlice";
-import {useEffect} from "react";
+
 
 const fetchMembers = async () => {
-   const response = await fetch("https://gorest.co.in/public/v2/users", {
+   const response = await fetch("https://gorest.co.in/public/v2/users?page=1&per_page=4", {
     method: "GET",
     headers: {
       'Content-Type': 'application/json',
@@ -24,18 +24,18 @@ const fetchMembers = async () => {
 
 // eslint-disable-next-line react/prop-types
 const TeamMember = ({openModal}) => {
-  const memberList = useSelector(state => state.members.memberList)
+  // const memberList = useSelector(state => state.members.memberList)
    const dispatch = useDispatch();
   const {data: members, isLoading, error} = useQuery({
      queryKey: ["myMembers"],
      queryFn : fetchMembers,
   })
-   console.log(members)
-  useEffect(() => {
+ 
     if(members) {
       dispatch(addMember(members))
+      console.log("fetched members", members)
     }
-  }, [members, dispatch])
+ 
   
   const darkMode = useSelector(state => state.theme.darkMode)
   
@@ -54,13 +54,13 @@ const TeamMember = ({openModal}) => {
         <p className={`font-bold ml-2 ${darkMode && "text-white"}`}>Team Member</p>
         <div className={`${darkMode ? "bg-[#333A45]" : "bg-white"} flex flex-col gap-2 p-2`}>
           {
-            memberList?.map((member, index) => (
-              <Member key={index}
+            members?.map((member) => (
+              <Member key={member.id}
               name={member.name}
               email={member.email}
               gender={member.gender}
               status={member.status}
-              id ={index}
+              id ={member.id}
               />
             ))
           }
