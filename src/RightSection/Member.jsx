@@ -18,6 +18,8 @@ const Member = ({name, email, gender, id, status}) => {
       </div>
       </div>
       <div className='mr-2'>
+       
+
       <Link to={`/userDetails/${id}`}>
       <SlArrowRight className='w-3 text-gray-500 ml-7'
       />

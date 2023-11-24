@@ -1,34 +1,23 @@
 import  { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addMember } from '../Redux/membersSlice';
+import {createMembers} from "../Api/Crud"
 import { AiOutlineClose } from 'react-icons/ai';
+import { useMutation, useQueryClient} from '@tanstack/react-query';
 
 
 // eslint-disable-next-line react/prop-types
 const MemberModal = ({closeModal}) => {
-
- // Function to create data by using http POST method
-
-  const createMembers = async () => {
-    const response = await fetch("https://gorest.co.in/public/v2/users" , {
-      method: "POST",
-      headers : {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer dfc6f5ba1634462bf2ee5934798c1223bdeb45318cfe254fe838509506a983eb',
-      },
-      body: JSON.stringify(value)
-    })
-
-    const result = await response.json();
-    console.log("result",result)
-  }
-
+  const queryClient = useQueryClient();
+  const createMemberMutation = useMutation({
+    mutationFn : createMembers,
+    onSuccess: () => {
+       queryClient.invalidateQueries({queryKey: ["myMembers"]});
+    }
+  })
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [status, setStatus] = useState('');
-
 
 const [nameError, setNameError] = useState('');
 const [emailError, setEmailError] = useState('');
@@ -42,19 +31,13 @@ const [statusError, setStatusError] = useState('');
     "status" : status,
 
   }
-  console.log(value.id)
-  const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-
-    
+  const handleSubmit = (e) => {   
     e.preventDefault();
-
    setNameError('');
    setEmailError('');
    setGenderError('');
    setStatusError('');
-   createMembers();
 
  if (!name.trim()) {
     setNameError('Member Name is required');
@@ -75,10 +58,8 @@ const [statusError, setStatusError] = useState('');
     setStatusError('Member Status is required');
     return;
   }
-
-
-    dispatch(addMember(value))
     closeModal();
+    createMemberMutation.mutate(value)
     console.log('Member Added:', { name, email, gender, status});
     
   };

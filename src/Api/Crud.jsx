@@ -30,3 +30,16 @@ export const fetchMemberDetails = async (id) => {
     return data
  }
  
+ export const createMembers = async (value) => {
+    const response = await fetch("https://gorest.co.in/public/v2/users" , {
+      method: "POST",
+      headers : {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer dfc6f5ba1634462bf2ee5934798c1223bdeb45318cfe254fe838509506a983eb',
+      },
+      body: JSON.stringify(value)
+    })
+
+    const result = await response.json();
+    console.log("result",result)
+  }

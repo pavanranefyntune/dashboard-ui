@@ -1,7 +1,6 @@
 import { useParams } from "react-router";
 import {fetchMemberDetails} from "../Api/Crud"
 import { useQuery } from "@tanstack/react-query";
-// import Member from "../RightSection/Member";
 
 const MemberDetails = () => {
     const { id } = useParams();
