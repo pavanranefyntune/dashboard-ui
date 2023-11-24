@@ -14,6 +14,7 @@ export const fetchMembers = async () => {
     return data
  }
  
+
 export const fetchMemberDetails = async (id) => {
     const response = await fetch(`https://gorest.co.in/public/v2/users/${id}`, {
      method: "GET",
@@ -43,3 +44,19 @@ export const fetchMemberDetails = async (id) => {
     const result = await response.json();
     console.log("result",result)
   }
+  
+  export const deleteMember = async (id) => {
+    const response = await fetch(`https://gorest.co.in/public/v2/users/${id}`, {
+     method: "DELETE",
+     headers: {
+       'Content-Type': 'application/json',
+       'Authorization': 'Bearer dfc6f5ba1634462bf2ee5934798c1223bdeb45318cfe254fe838509506a983eb',
+     }
+    });
+ 
+    if (!response.ok) {
+     throw new Error("Failed to delete members");
+    }
+    return response
+ } 
+ 

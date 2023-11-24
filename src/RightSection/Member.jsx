@@ -1,9 +1,12 @@
 import {SlArrowRight} from "react-icons/sl";
+import { FaUserEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 // eslint-disable-next-line react/prop-types
-const Member = ({name, email, gender, id, status}) => {
+const Member = ({name, email, gender, id, status, handleDelete}) => {
+
 
   const darkMode = useSelector(state => state.theme.darkMode)
 
@@ -17,9 +20,16 @@ const Member = ({name, email, gender, id, status}) => {
         <p className={`text-[8px] ${darkMode && "text-gray-400"}`}>{status}</p>
       </div>
       </div>
-      <div className='mr-2'>
-       
-
+      <div className='mr-2 flex gap-'>
+        <div className="flex gap-2">
+        <div>
+      <FaUserEdit className="w-5 h-6"/>
+      </div>
+      <div className="cursor-pointer" 
+      onClick={()=> handleDelete(id)}>
+      < MdDeleteForever className="w-8 h-6"/>
+      </div>
+      </div>
       <Link to={`/userDetails/${id}`}>
       <SlArrowRight className='w-3 text-gray-500 ml-7'
       />

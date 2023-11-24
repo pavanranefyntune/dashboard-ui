@@ -59,9 +59,7 @@ const [statusError, setStatusError] = useState('');
     return;
   }
     closeModal();
-    createMemberMutation.mutate(value)
-    console.log('Member Added:', { name, email, gender, status});
-    
+    createMemberMutation.mutate(value) 
   };
 
   return (
@@ -117,6 +115,7 @@ const [statusError, setStatusError] = useState('');
                   value="female"
                   checked={gender === 'female'}
                   onChange={(e) => setGender(e.target.value)}
+                  
                   className="ml-4"
                 />
                 <label htmlFor="female" className="ml-1">Female</label>

@@ -1,12 +1,13 @@
 import Member from "./Member";
 import {IoAdd} from "react-icons/io5";
 import {useSelector} from "react-redux";
-import { useQuery } from "@tanstack/react-query";
-import {fetchMembers} from "../Api/Crud"
+import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
+import {fetchMembers} from "../Api/Crud";
+import {deleteMember} from "../Api/Crud"
 
 // eslint-disable-next-line react/prop-types
 const TeamMember = ({openModal}) => {
-   
+   const queryClient = useQueryClient();
    const darkMode = useSelector(state => state.theme.darkMode)
 
   const {data: members, isLoading, error} = useQuery({
@@ -14,8 +15,17 @@ const TeamMember = ({openModal}) => {
      queryFn : fetchMembers,
   })
   
-  if(members) {console.log(members)}
+  const deleteMutation = useMutation({
+    mutationFn: deleteMember,
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ["myMembers"]})
+    }
+  })
   
+  const handleDelete = (id) => {
+    deleteMutation.mutate(id)
+  }
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -36,6 +46,7 @@ const TeamMember = ({openModal}) => {
               gender={member.gender}
               status={member.status}
               id ={member.id}
+              handleDelete={handleDelete}
               />
             ))
           }
