@@ -1,43 +1,20 @@
 import Member from "./Member";
 import {IoAdd} from "react-icons/io5";
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import { addMember } from "../Redux/membersSlice";
-
-
-const fetchMembers = async () => {
-   const response = await fetch("https://gorest.co.in/public/v2/users?page=1&per_page=4", {
-    method: "GET",
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer dfc6f5ba1634462bf2ee5934798c1223bdeb45318cfe254fe838509506a983eb',
-    }
-   });
-
-   if (!response.ok) {
-    throw new Error("Failed to fetch members");
-   }
-   const data = await response.json();
-   return data
-}
-
+import {fetchMembers} from "../Api/Crud"
 
 // eslint-disable-next-line react/prop-types
 const TeamMember = ({openModal}) => {
-  // const memberList = useSelector(state => state.members.memberList)
-   const dispatch = useDispatch();
+   
+   const darkMode = useSelector(state => state.theme.darkMode)
+
   const {data: members, isLoading, error} = useQuery({
      queryKey: ["myMembers"],
      queryFn : fetchMembers,
   })
- 
-    if(members) {
-      dispatch(addMember(members))
-      console.log("fetched members", members)
-    }
- 
   
-  const darkMode = useSelector(state => state.theme.darkMode)
+  if(members) {console.log(members)}
   
   if (isLoading) {
     return <p>Loading...</p>;
@@ -46,8 +23,6 @@ const TeamMember = ({openModal}) => {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
- 
 
   return (
     <div className={`${darkMode ? "bg-[#333A45]" : "bg-white"} p-1 flex flex-col items-center py-2 rounded-md`}>
