@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 const RightSection = () => {
 
+  
   const [show, setShow] = useState(false);
 
   const openModal = () => {

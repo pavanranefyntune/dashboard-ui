@@ -3,7 +3,8 @@ import {IoAdd} from "react-icons/io5";
 import {useSelector} from "react-redux";
 import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 import {fetchMembers} from "../Api/Crud";
-import {deleteMember} from "../Api/Crud"
+import {deleteMember} from "../Api/Crud";
+
 
 // eslint-disable-next-line react/prop-types
 const TeamMember = ({openModal}) => {
@@ -47,6 +48,7 @@ const TeamMember = ({openModal}) => {
               status={member.status}
               id ={member.id}
               handleDelete={handleDelete}
+              openModal={openModal}
               />
             ))
           }

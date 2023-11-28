@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import {fetchMemberDetails} from "../Api/Crud"
 import { useQuery } from "@tanstack/react-query";
+import TeamMember from "../RightSection/TeamMember";
 
 const MemberDetails = () => {
     const { id } = useParams();
@@ -42,17 +43,7 @@ const MemberDetails = () => {
         <div className="flex flex-col gap-4 w-[20vw]">
           <p className="text-xl font-bold text-center">Other Members</p>
           <div className="flex flex-col gap-4">
-        {/* {
-            filteredMembers[0]?.map((member) => (
-              <Member key={member.id}
-              name={member.name}
-              email={member.email}
-              gender={member.gender}
-              status={member.status}
-              id ={member.id}
-              />
-            ))
-          } */}
+          <TeamMember/>
           </div>
         </div>
         </div>

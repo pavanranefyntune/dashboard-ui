@@ -59,4 +59,19 @@ export const fetchMemberDetails = async (id) => {
     }
     return response
  } 
- 
+
+ export const updateMembers = async (value) => {
+  const {id, ... data} = value
+    const response = await fetch(`https://gorest.co.in/public/v2/users/${id}` , {
+      method: "PUT",
+      headers : {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer dfc6f5ba1634462bf2ee5934798c1223bdeb45318cfe254fe838509506a983eb',
+      },
+      body: JSON.stringify(data)
+    })
+
+    const result = await response.json();
+    return result
+  }
+  
