@@ -23,43 +23,11 @@ const EditMember = ({pass, closeEditModal}) => {
     email : email,
     gender : gender,
     status : status,
-
   });
-
-// const [nameError, setNameError] = useState('');
-// const [emailError, setEmailError] = useState('');
-// const [genderError, setGenderError] = useState('');
-// const [statusError, setStatusError] = useState('');
-
-
 
   const handleSubmit = (e) => {   
     e.preventDefault();
-  //  setNameError('');
-  //  setEmailError('');
-  //  setGenderError('');
-  //  setStatusError('');
-
-
-//  if (!value.name.trim()) {
-//     setNameError('Member Name is required');
-//     return;
-//   }
-
-//   if (!value.email.trim()) {
-//     setEmailError('Member Email is required');
-//     return;
-//   }
-
-//   if (!value.gender.trim()) {
-//     setGenderError('Member Gender is required');
-//     return;
-//   }
-
-//   if (!value.status.trim()) {
-//     setStatusError('Member Status is required');
-//     return;
-//   }
+ 
   closeEditModal();
   updateMemberMutation.mutate(value) 
   };
@@ -89,7 +57,7 @@ const EditMember = ({pass, closeEditModal}) => {
                 placeholder='Enter Member Name'
                 className="mt-1 p-2 w-full border rounded-md"
               />
-                {/* {nameError && <p className="text-red-500">{nameError}</p>} */}
+              
             </div>
             <div>
               <input
@@ -99,7 +67,7 @@ const EditMember = ({pass, closeEditModal}) => {
                 placeholder='Enter Member Email'
                 className="mt-1 p-2 w-full border rounded-md"
               />
-                {/* {emailError && <p className="text-red-500">{emailError}</p>} */}
+            
             </div>
             <div>
               <label>Gender:</label>
@@ -122,7 +90,7 @@ const EditMember = ({pass, closeEditModal}) => {
                 />
                 <label htmlFor="female" className="ml-1">Female</label>
               </div>
-              {/* {genderError && <p className="text-red-500">{genderError}</p>} */}
+            
             </div>
 
             <div>
@@ -145,7 +113,7 @@ const EditMember = ({pass, closeEditModal}) => {
                 />
                 <label htmlFor="inactive" className="ml-1">Inactive</label>
               </div>
-              {/* {statusError && <p className="text-red-500">{statusError}</p>} */}
+           
             </div>
             <div className="mt-4">
               <button
