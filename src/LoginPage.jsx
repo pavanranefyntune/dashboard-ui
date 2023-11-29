@@ -36,11 +36,11 @@ const LoginPage = () => {
     password: "",})
   };
 
-  return (
-    <div className="flex flex-col justify-center items-center border">
-      <div>
 
-      </div>
+
+  return (
+    <div className="flex flex-col justify-center items-center ">
+      <div className="font-bold text-lg text-green-500">NIOND</div>
       <div className="flex flex-col text-center gap-6 p-6">
         <header className="font-bold text-xl">Member Login</header>
         <form onSubmit={handleLogin}
