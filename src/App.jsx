@@ -7,9 +7,9 @@ import Home from "./home/Home";
 import SideBar from "./Sidebar/SideBar";
 import Authenticated from "./Authenticated";
 
+
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
-
   return (
     <Router>
       <div className="flex w-full h-screen relative box-border p-0 m-0">
@@ -54,12 +54,16 @@ const App = () => {
             path="/login"
             element={
               <div className="w-[100vw] flex flex-col items-center justify-center">
+                <Authenticated>
                 <LoginPage />
+                </Authenticated>
+                
               </div>
             }
           ></Route>
         </Routes>
       </div>
+      
     </Router>
   );
 };

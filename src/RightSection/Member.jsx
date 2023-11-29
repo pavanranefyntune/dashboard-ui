@@ -22,7 +22,6 @@ const Member = ({ name, email, gender, id, status, handleDelete }) => {
   };
 
   const darkMode = useSelector((state) => state.theme.darkMode);
-  console.log(showEdit)
 
   return (
     <div
