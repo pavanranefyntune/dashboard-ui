@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const LoginPage = () => {
+
   const navigate = useNavigate();
 
   const loginMember = async (value) => {
@@ -17,12 +18,12 @@ const LoginPage = () => {
       }
     );
     const result = await response.json();
-    localStorage.setItem("token", result.token);
+    localStorage.setItem("token", result.token)
   };
 
   const [value, setValue] = useState({
 
-    
+
     email: "",
     password: "",
     device_name: "windows",

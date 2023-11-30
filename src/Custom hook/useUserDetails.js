@@ -7,9 +7,8 @@ function useUserDetails() {
   const queryClient = useQueryClient()
   const token = localStorage.getItem("token");
   
-
   const fetchUser = async () => {
-    try {
+    
       const response = await axios.get(
         "https://uatapicorporatetravel.fynity.in/api/user",
         {
@@ -21,10 +20,7 @@ function useUserDetails() {
       );
 
       return response.data.data
-    } catch (error) {
-      console.log("error fetching User", error);
-      return error;
-    }
+  
   };
 
   const service  = useQuery({

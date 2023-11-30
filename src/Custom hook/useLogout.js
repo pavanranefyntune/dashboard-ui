@@ -1,22 +1,21 @@
 import axios from  "axios";
-const useLogout = () => {
+function useLogout(){
   
    const token = localStorage.getItem("token");
-
+ 
    const logoutUser = async () => {
-    const response = await axios.post("https://uatapicorporatetravel.fynity.in/api/logout" , {
+    
+    const response = await axios.post("https://uatapicorporatetravel.fynity.in/api/logout",{} , {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
     }
     )
-     return response.data
+     return response
    }
-
-  return (
-    <div></div>
-  )
-}
+     
+   return {logoutUser};
+  }
 
 export default useLogout

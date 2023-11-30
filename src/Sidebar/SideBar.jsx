@@ -1,10 +1,10 @@
 import { useState } from "react";
 import sidebarData from "./sidebar.constant";
-import { FiLogOut } from "react-icons/fi";
 import userpic from "../../src/assets/user.jpg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useUserDetails from "../Custom hook/useUserDetails";
+import Logout from "./Logout";
 
 const SideBar = () => {
   
@@ -12,7 +12,7 @@ const SideBar = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
 
   const { service } = useUserDetails();
-  
+
   const handleDrag = (e, id) => {
     e.dataTransfer.setData("id", id);
   };
@@ -106,8 +106,7 @@ const SideBar = () => {
             darkMode && "text-white"
           }`}
         >
-          <FiLogOut />
-          Log Out
+          <Logout/>
         </p>
       </div>
     </div>

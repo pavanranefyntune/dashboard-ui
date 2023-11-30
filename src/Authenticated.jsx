@@ -6,7 +6,6 @@ import { useEffect } from "react";
 const Authenticated = ({ children }) => {
   const { service } = useUserDetails();
   const navigate = useNavigate();
-
  
   useEffect(() => {
     if (service.isLoading) return () => {};
@@ -20,8 +19,8 @@ const Authenticated = ({ children }) => {
   if (service.isLoading) {
     return <>Loading...</>
   }
-
   return  <>{children}</>
   
 };
+
 export default Authenticated;
