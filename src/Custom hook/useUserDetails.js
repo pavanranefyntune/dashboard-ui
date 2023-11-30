@@ -7,6 +7,7 @@ function useUserDetails() {
   const queryClient = useQueryClient()
   const token = localStorage.getItem("token");
   
+  
   const fetchUser = async () => {
     
       const response = await axios.get(

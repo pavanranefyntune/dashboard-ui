@@ -19,10 +19,11 @@ const LoginPage = () => {
     );
     const result = await response.json();
     localStorage.setItem("token", result.token)
+    navigate("/");
+
   };
 
   const [value, setValue] = useState({
-
 
     email: "",
     password: "",
@@ -40,7 +41,6 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     loginMember(value);
-    navigate("/");
   };
 
   return (
