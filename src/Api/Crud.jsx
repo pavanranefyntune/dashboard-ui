@@ -74,4 +74,3 @@ export const fetchMemberDetails = async (id) => {
     const result = await response.json();
     return result
   }
-  

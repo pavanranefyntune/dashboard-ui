@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useQueryClient } from "@tanstack/react-query";
 
-const useUserDetails = () => {
+function useUserDetails() {
    
-    const queryClient = useQueryClient()
+  const queryClient = useQueryClient()
   const token = localStorage.getItem("token");
+  
 
   const fetchUser = async () => {
     try {
@@ -20,22 +21,20 @@ const useUserDetails = () => {
       );
 
       return response.data.data
-
     } catch (error) {
       console.log("error fetching User", error);
-      throw error;
+      return error;
     }
   };
 
   const service  = useQuery({
-    queryKey: ["User"],
-    queryFn: fetchUser,
-    staleTime: 100000,
-    retry: 0
+    queryKey: ["user"],
+    queryFn: fetchUser
   });
  
-  const cacheData = queryClient.getQueryData(["User"]);
+  const cacheData = queryClient.getQueryData(["user"]);
+
   return {service, cacheData};
-};
+}
 
 export default useUserDetails;

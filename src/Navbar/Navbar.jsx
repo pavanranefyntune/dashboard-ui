@@ -9,7 +9,7 @@ import useUserDetails from "../Custom hook/useUserDetails";
 
 const Navbar = () => {
 
-  const {cacheData} = useUserDetails();
+  const {service} = useUserDetails();
 
   const darkMode = useSelector(state => state.theme.darkMode)
   const dispatch = useDispatch();
@@ -49,8 +49,8 @@ const Navbar = () => {
           
             <img src={userpic} alt="" className="w-[35px] h-[35px] text-center rounded-full mr-2"/>
         <div className="flex flex-col">
-          <p className={`font-bold text-sm ${darkMode && "text-white"}`}>{cacheData.name}</p>
-          <p className="text-xs text-gray-400">{cacheData.email}</p>
+          <p className={`font-bold text-sm ${darkMode && "text-white"}`}>{service?.data?.name}</p>
+          <p className="text-xs text-gray-400">{service?.data?.email}</p>
           </div>
         </div>
         </div>

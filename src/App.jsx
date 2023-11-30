@@ -7,7 +7,6 @@ import Home from "./home/Home";
 import SideBar from "./Sidebar/SideBar";
 import Authenticated from "./Authenticated";
 
-
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
   return (
@@ -30,7 +29,10 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
+                <Authenticated>
                 <MemberDetails />
+                </Authenticated>
+                
               </>
             }
           ></Route>
@@ -45,7 +47,10 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
+                <Authenticated>
                 <Users />
+                </Authenticated>
+               
               </div>
             }
           ></Route>

@@ -21,6 +21,8 @@ const LoginPage = () => {
   };
 
   const [value, setValue] = useState({
+
+    
     email: "",
     password: "",
     device_name: "windows",
