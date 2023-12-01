@@ -2,20 +2,22 @@ import Member from "./Member";
 import {IoAdd} from "react-icons/io5";
 import {useSelector} from "react-redux";
 import { useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
-import {fetchMembers} from "../Api/Crud";
-import {deleteMember} from "../Api/Crud";
-
+import useGetMembers from "./custom hooks/useGetMembers";
+import useDeleteMember from "./custom hooks/useDeleteMember";
 
 // eslint-disable-next-line react/prop-types
 const TeamMember = ({openModal}) => {
    const queryClient = useQueryClient();
    const darkMode = useSelector(state => state.theme.darkMode)
 
+   const {getMembers} = useGetMembers();
   const {data: members, isLoading, error} = useQuery({
      queryKey: ["myMembers"],
-     queryFn : fetchMembers,
+     queryFn : getMembers,
   })
   
+  const {deleteMember} = useDeleteMember();
+
   const deleteMutation = useMutation({
     mutationFn: deleteMember,
     onSuccess: () => {

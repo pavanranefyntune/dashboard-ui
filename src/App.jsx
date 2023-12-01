@@ -29,10 +29,7 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
-                <Authenticated>
                 <MemberDetails />
-                </Authenticated>
-                
               </>
             }
           ></Route>
@@ -47,9 +44,7 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
-                <Authenticated>
                 <Users />
-                </Authenticated>
                
               </div>
             }
@@ -59,10 +54,7 @@ const App = () => {
             path="/login"
             element={
               <div className="w-[100vw] flex flex-col items-center justify-center">
-                <Authenticated>
                 <LoginPage />
-                </Authenticated>
-                
               </div>
             }
           ></Route>

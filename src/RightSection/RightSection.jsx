@@ -1,12 +1,11 @@
 import Upgrade from '../RightSection/Upgrade';
 import Meeting from "../RightSection/Meeting";
-import TeamMember from './TeamMember';
-import MemberModal from './MemberModal';
+import TeamMember from './Team member/TeamMember';
+import MemberModal from './Team member/MemberModal';
 import { useState } from 'react';
 
 const RightSection = () => {
 
-  
   const [show, setShow] = useState(false);
 
   const openModal = () => {
