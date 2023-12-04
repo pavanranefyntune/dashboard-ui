@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import { Link } from "react-router-dom";
+
 import data from "../../Sidebar/sidebar.constant";
 
 const Searchbar = () => {
@@ -29,15 +30,18 @@ const Searchbar = () => {
         className="outline-none border rounded-full p-2"
         placeholder="Search Pages"
       />
-      <button className="p-2 bg-black text-white rounded-full">Search</button>
       {isDropdownOpen && inputValue !== "" && (
-        <ul className="bg-white text-black text-center rounded-md gap-2 p-2 m-1">
+        <ul className="bg-white text-black text-center rounded-md gap-2 p-1 m-1">
           {dropDownList.length === 0 ? (
             <li>No result found </li>
           ) : (
             dropDownList.map((item, index) => (
-              <li key={index} onClick={() => handleItemClick(item)}>
-                {item.name}
+              <li
+                key={index}
+                onClick={() => handleItemClick(item)}
+                className="cursor-pointer"
+              >
+                <Link to={item.path}>{item.name}</Link>
               </li>
             ))
           )}
