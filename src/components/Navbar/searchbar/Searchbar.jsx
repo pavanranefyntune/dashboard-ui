@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import data from "../../../Sidebar/sidebar.constant";
+import { useRef } from "react";
 
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState("");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const inputRef = useRef();
+
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === "/") {
+        event.preventDefault();
+        inputRef.current.focus();
+      }
+    };
+    document.addEventListener("keypress", handleKey);
+  }, []);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -26,6 +39,7 @@ const Searchbar = () => {
         type="text"
         value={inputValue}
         onChange={handleInputChange}
+        ref={inputRef}
         className="outline-none border rounded-full p-2"
         placeholder="Search Pages"
       />
