@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import data from "../../../Sidebar/sidebar.constant";
+import data from "../../Sidebar/sidebar.constant";
 import { useRef } from "react";
 
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState("");
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  const inputRef = useRef();
+  const inputRef = useRef("");
 
   useEffect(() => {
     const handleKey = (event) => {

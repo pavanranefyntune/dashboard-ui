@@ -1,9 +1,9 @@
-import SideBar from "../../Sidebar/SideBar";
+import SideBar from "../../components/Sidebar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
-import Cards from "../../TopSection/Cards";
-import MidSection from "../../MidSection/MidSection";
-import TopStore from "../../Bottom/TopStore";
-import RightSection from "../../RightSection/RightSection";
+import Cards from "../../components/Dashboard/TopSection/Cards";
+import MidSection from "../../components/Dashboard/MidSection/MidSection";
+import TopStore from "../../components/Dashboard/Bottom/TopStore";
+import DashboardSidebar from "../../components/Dashboard/Dashboard Sidebar/DashboardSidebar";
 import { useSelector } from "react-redux";
 
 const Home = () => {
@@ -38,7 +38,7 @@ const Home = () => {
             <TopStore />
           </div>
           <div className="w-[23vw] pr-8">
-            <RightSection />
+            <DashboardSidebar />
           </div>
         </div>
       </div>

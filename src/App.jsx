@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MemberDetails from "./memberDetails/MemberDetails";
-import Users from "./users/Users";
+import MemberDetails from "./components/memberDetails/MemberDetails";
+import Users from "./components/users/Users";
 import { useSelector } from "react-redux";
 import LoginPage from "./pages/Login/LoginPage";
 import Home from "./pages/home/Home";
-import SideBar from "./Sidebar/SideBar";
-import Authenticated from "./Authenticated";
+import SideBar from "./components/Sidebar/SideBar";
+import Authenticated from "./page wrapper/Authenticated";
 import Navbar from "./components/Navbar/Navbar";
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);

@@ -1,13 +1,12 @@
 import { useState } from "react";
 import sidebarData from "./sidebar.constant";
-import userpic from "../../src/assets/user.jpg";
+import userpic from "../../assets/user.jpg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import useUserDetails from "../Custom hook/useUserDetails";
+import useUserDetails from "../../Custom hook/useUserDetails";
 import Logout from "./Logout";
 
 const SideBar = () => {
-  
   const [sideBarData, setSideBarData] = useState(sidebarData);
   const darkMode = useSelector((state) => state.theme.darkMode);
 
@@ -106,7 +105,7 @@ const SideBar = () => {
             darkMode && "text-white"
           }`}
         >
-          <Logout/>
+          <Logout />
         </p>
       </div>
     </div>
