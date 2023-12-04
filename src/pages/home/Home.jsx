@@ -1,5 +1,5 @@
 import SideBar from "../../Sidebar/SideBar";
-import Navbar from "../../Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import Cards from "../../TopSection/Cards";
 import MidSection from "../../MidSection/MidSection";
 import TopStore from "../../Bottom/TopStore";

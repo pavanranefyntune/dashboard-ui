@@ -6,18 +6,21 @@ import LoginPage from "./pages/Login/LoginPage";
 import Home from "./pages/home/Home";
 import SideBar from "./Sidebar/SideBar";
 import Authenticated from "./Authenticated";
-
+import Navbar from "./components/Navbar/Navbar";
 const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
   return (
     <Router>
       <div className="flex w-full h-screen relative box-border p-0 m-0">
         <Routes>
-          <Route path="/" element={
-          <Authenticated>
-            <Home />
-            </Authenticated>
-            }></Route>
+          <Route
+            path="/"
+            element={
+              <Authenticated>
+                <Home />
+              </Authenticated>
+            }
+          ></Route>
           <Route
             path="/userDetails/:id"
             element={
@@ -44,12 +47,12 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
+                <Navbar />
                 <Users />
-               
               </div>
             }
           ></Route>
-       
+
           <Route
             path="/login"
             element={
@@ -60,7 +63,6 @@ const App = () => {
           ></Route>
         </Routes>
       </div>
-      
     </Router>
   );
 };

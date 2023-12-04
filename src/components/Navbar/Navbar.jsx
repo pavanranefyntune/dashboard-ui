@@ -1,10 +1,10 @@
-import userpic from "../../src/assets/user.jpg";
+import userpic from "../../assets/user.jpg";
 import { AiFillMessage } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";
 import { Switch } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme } from "../Redux/themeSlice";
-import useUserDetails from "../Custom hook/useUserDetails";
+import { toggleTheme } from "../../Redux/themeSlice";
+import useUserDetails from "../../Custom hook/useUserDetails";
 import Searchbar from "./searchbar/Searchbar";
 
 const Navbar = () => {
