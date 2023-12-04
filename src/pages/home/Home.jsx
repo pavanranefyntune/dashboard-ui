@@ -1,9 +1,9 @@
-import SideBar from "../Sidebar/SideBar"
-import Navbar from "../Navbar/Navbar";
-import Cards from "../TopSection/Cards";
-import MidSection from "../MidSection/MidSection";
-import TopStore from "../Bottom/TopStore";
-import RightSection from "../RightSection/RightSection";
+import SideBar from "../../Sidebar/SideBar"
+import Navbar from "../../Navbar/Navbar";
+import Cards from "../../TopSection/Cards";
+import MidSection from "../../MidSection/MidSection";
+import TopStore from "../../Bottom/TopStore";
+import RightSection from "../../RightSection/RightSection";
 import { useSelector } from "react-redux";
 
 const Home = () => {

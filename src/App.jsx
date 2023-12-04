@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MemberDetails from "./memberDetails/MemberDetails";
 import Users from "./users/Users";
 import { useSelector } from "react-redux";
-import LoginPage from "./LoginPage";
-import Home from "./home/Home";
+import LoginPage from "./pages/Login/LoginPage";
+import Home from "./pages/home/Home";
 import SideBar from "./Sidebar/SideBar";
 import Authenticated from "./Authenticated";
 

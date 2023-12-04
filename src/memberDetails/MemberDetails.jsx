@@ -8,7 +8,6 @@ const MemberDetails = () => {
 
     const members = queryClient.getQueryData(["myMembers"]);
    
-
     const memberDetails = members?.find((member) => member.id == id)
    
     return (
