@@ -20,7 +20,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col ms-[15vw] bg-[#EFF3F4]">
         <div
-          className={`w-[85vw]  sticky top-0 z-10 ${
+          className={`w-[85vw] sticky top-0  ${
             darkMode ? "bg-[#23272F]" : "bg-[#EFF3F3]"
           } px-6`}
         >
