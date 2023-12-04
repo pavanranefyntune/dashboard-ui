@@ -16,23 +16,17 @@ const MemberModal = ({closeModal}) => {
     }
   })
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
-  const [status, setStatus] = useState('');
-
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    status: ""
+  });
+  
 const [nameError, setNameError] = useState('');
 const [emailError, setEmailError] = useState('');
 const [genderError, setGenderError] = useState('');
 const [statusError, setStatusError] = useState('');
-
-  const value = {
-    "name" : name,
-    "email" : email,
-    "gender" : gender,
-    "status" : status,
-
-  }
 
   const handleSubmit = (e) => {   
     e.preventDefault();
@@ -41,27 +35,27 @@ const [statusError, setStatusError] = useState('');
    setGenderError('');
    setStatusError('');
 
- if (!name.trim()) {
+ if (!formData.name.trim()) {
     setNameError('Member Name is required');
     return;
   }
 
-  if (!email.trim()) {
+  if (!formData.email.trim()) {
     setEmailError('Member Email is required');
     return;
   }
 
-  if (!gender.trim()) {
+  if (!formData.gender.trim()) {
     setGenderError('Member Gender is required');
     return;
   }
 
-  if (!status.trim()) {
+  if (!formData.status.trim()) {
     setStatusError('Member Status is required');
     return;
   }
     closeModal();
-    createMemberMutation.mutate(value) 
+    createMemberMutation.mutate(formData) 
   };
 
   return (
@@ -84,8 +78,8 @@ const [statusError, setStatusError] = useState('');
             <div>
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={formData.name}
+                onChange={(e) => setFormData(prevState => ({ ...prevState, name: e.target.value }))}
                 placeholder='Enter Member Name'
                 className="mt-1 p-2 w-full border rounded-md"
               />
@@ -94,8 +88,8 @@ const [statusError, setStatusError] = useState('');
             <div>
               <input
                 type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={(e) =>  setFormData(prevState => ({ ...prevState, email: e.target.value }))}
                 placeholder='Enter Member Email'
                 className="mt-1 p-2 w-full border rounded-md"
               />
@@ -107,16 +101,16 @@ const [statusError, setStatusError] = useState('');
                 <input
                   type="radio"
                   value="male"
-                  checked={gender === 'male'}
-                  onChange={(e) => setGender(e.target.value)}
+                  checked={formData.gender === 'male'}
+                  onChange={(e) => setFormData(prevState => ({ ...prevState, gender: e.target.value }))}
                 />
                 <label htmlFor="male" className="ml-1">Male</label>
 
                 <input
                   type="radio"
                   value="female"
-                  checked={gender === 'female'}
-                  onChange={(e) => setGender(e.target.value)}
+                  checked={formData.gender === 'female'}
+                  onChange={(e) => setFormData(prevState => ({ ...prevState, gender: e.target.value }))}
                   
                   className="ml-4"
                 />
@@ -131,16 +125,16 @@ const [statusError, setStatusError] = useState('');
                 <input
                   type="radio"
                   value="active"
-                  checked={status === 'active'}
-                  onChange={(e) => setStatus(e.target.value)}
+                  checked={formData.status === 'active'}
+                  onChange={(e) =>setFormData(prevState => ({ ...prevState, status: e.target.value }))}
                 />
                 <label htmlFor="active" className="ml-1">Active</label>
 
                 <input
                   type="radio"
                   value="inactive"
-                  checked={status === 'inactive'}
-                  onChange={(e) => setStatus(e.target.value)}
+                  checked={formData.status === 'inactive'}
+                  onChange={(e) => setFormData(prevState => ({ ...prevState, status: e.target.value }))}
                   className="ml-4"
                 />
                 <label htmlFor="inactive" className="ml-1">Inactive</label>
