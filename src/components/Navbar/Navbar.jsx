@@ -5,7 +5,7 @@ import { Switch } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../../Redux/themeSlice";
 import useUserDetails from "../../Custom hook/useUserDetails";
-import Searchbar from "./searchbar/Searchbar";
+import Searchbar from "./searchbar/index";
 
 const Navbar = () => {
   const { service } = useUserDetails();
@@ -14,7 +14,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex p-[1rem] justify-between  z-30 h-[15vh]">
+    <div className="flex p-[1rem] justify-between  z-30 h-[15vh] w-[85vw]">
       <div>
         <p
           className={`font-bold lg:text-2xl md:text-2xl text-xl ${

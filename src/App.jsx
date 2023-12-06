@@ -47,7 +47,10 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
-                <Navbar />
+                <div className="ms-[15vw]">
+                  <Navbar />
+                </div>
+
                 <Users />
               </div>
             }
