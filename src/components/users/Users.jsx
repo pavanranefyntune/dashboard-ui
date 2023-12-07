@@ -129,27 +129,31 @@ import {
   flexRender,
   getCoreRowModel,
 } from "@tanstack/react-table";
-import users from "./users.constant";
+import users from "../../MOCK_DATA";
 
 const Users = () => {
   const data = users;
 
   const columns = [
     {
-      header: "Name",
-      accessorKey: "name",
+      header: "First Name",
+      accessorKey: "first_name",
+    },
+    {
+      header: "Last Name",
+      accessorKey: "last_name",
     },
     {
       header: "Email",
       accessorKey: "email",
     },
     {
-      header: "Mobile",
-      accessorKey: "mobile",
+      header: "Gender",
+      accessorKey: "gender",
     },
     {
-      header: "Website",
-      accessorKey: "website",
+      header: "Username",
+      accessorKey: "username",
     },
   ];
 
