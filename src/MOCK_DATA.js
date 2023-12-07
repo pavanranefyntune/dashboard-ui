@@ -1,4 +1,4 @@
-export default const  users =[
+const users = [
   {
     first_name: "Marrilee",
     last_name: "Durman",
@@ -700,3 +700,5 @@ export default const  users =[
     username: "nyes2r",
   },
 ];
+
+export default users;

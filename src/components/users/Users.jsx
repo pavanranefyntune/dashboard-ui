@@ -128,9 +128,13 @@ import {
   useReactTable,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 import users from "../../MOCK_DATA";
-
+import { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 const Users = () => {
   const data = users;
 
@@ -157,10 +161,18 @@ const Users = () => {
     },
   ];
 
+  const [sorting, setSorting] = useState([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting: sorting,
+    },
+    onSortingChange: setSorting,
   });
 
   return (
@@ -170,11 +182,21 @@ const Users = () => {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
+                <th
+                  key={header.id}
+                  onClick={header.column.getToggleSortingHandler()}
+                >
+                  <div className="flex justify-center items-center">
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                    {
+                      { asc: <IoIosArrowDown />, desc: <IoIosArrowUp /> }[
+                        header.column.getIsSorted() ?? null
+                      ]
+                    }
+                  </div>
                 </th>
               ))}
             </tr>
@@ -192,6 +214,31 @@ const Users = () => {
           ))}
         </tbody>
       </table>
+      <div className="flex justify-center p-2 gap-1">
+        <button className="p-2 border " onClick={() => table.setPageIndex(0)}>
+          First Page
+        </button>
+        <button
+          className="p-2 border "
+          disabled={!table.getCanPreviousPage()}
+          onClick={() => table.previousPage()}
+        >
+          Previous Page
+        </button>
+        <button
+          className="p-2 border "
+          disabled={!table.getCanNextPage()}
+          onClick={() => table.nextPage()}
+        >
+          Next Page
+        </button>
+        <button
+          className="p-2 border "
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+        >
+          Last Page
+        </button>
+      </div>
     </div>
   );
 };
