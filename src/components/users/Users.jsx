@@ -130,12 +130,14 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 import users from "../../MOCK_DATA";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import { CgMenuCheese } from "react-icons/cg";
 const Users = () => {
   const data = users;
 
@@ -171,6 +173,8 @@ const Users = () => {
   ];
 
   const [sorting, setSorting] = useState([]);
+  const [filtered, setFiltered] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   const table = useReactTable({
     data,
@@ -178,14 +182,60 @@ const Users = () => {
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
       sorting: sorting,
+      globalFilter: filtered,
     },
     onSortingChange: setSorting,
+    onGlobalFilterChange: setFiltered,
   });
 
   return (
-    <div className="flex flex-col ms-[15vw] w-[85vw] bg-[#EFF3F4] p-4 ">
+    <div className="flex flex-col ms-[15vw] w-[85vw] bg-[#EFF3F4] p-4 gap-2 relative ">
+      <div className="flex justify-between p-4">
+        <input
+          type="text"
+          value={filtered}
+          onChange={(e) => setFiltered(e.target.value)}
+          className="w-48 rounded-full outline-none px-4 py-1"
+        />
+        <button onClick={() => setToggle(!toggle)}>
+          <CgMenuCheese />
+        </button>
+      </div>
+      {toggle && (
+        <div className=" border border-black rounded w-72 z-30 absolute right-14 bg-white top-4">
+          <div className="px-1 border-b border-black">
+            <label>
+              <input
+                {...{
+                  type: "checkbox",
+                  checked: table.getIsAllColumnsVisible(),
+                  onChange: table.getToggleAllColumnsVisibilityHandler(),
+                }}
+              />{" "}
+              Toggle All
+            </label>
+          </div>
+          {table.getAllLeafColumns().map((column) => {
+            return (
+              <div key={column.id} className="px-1">
+                <label>
+                  <input
+                    {...{
+                      type: "checkbox",
+                      checked: column.getIsVisible(),
+                      onChange: column.getToggleVisibilityHandler(),
+                    }}
+                  />{" "}
+                  {column.id}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      )}
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -224,26 +274,41 @@ const Users = () => {
         </tbody>
       </table>
       <div className="flex justify-center p-2 gap-1">
-        <button className="p-2 border " onClick={() => table.setPageIndex(0)}>
+        <button
+          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
+          onClick={() => table.setPageIndex(0)}
+          disabled={table.getState().pagination.pageIndex + 1 === 1}
+        >
           First Page
         </button>
         <button
-          className="p-2 border "
+          className={`p-2 border ${
+            !table.getCanPreviousPage() && " text-gray-400"
+          } `}
           disabled={!table.getCanPreviousPage()}
           onClick={() => table.previousPage()}
         >
           Previous Page
         </button>
+        <div className="flex items-center">
+          <span> {table.getState().pagination.pageIndex + 1}</span>
+          <span>of {table.getPageCount()}</span>
+        </div>
         <button
-          className="p-2 border "
+          className={`p-2 border ${
+            !table.getCanNextPage() && " text-gray-400"
+          } `}
           disabled={!table.getCanNextPage()}
           onClick={() => table.nextPage()}
         >
           Next Page
         </button>
         <button
-          className="p-2 border "
+          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+          disabled={
+            table.getState().pagination.pageIndex + 1 == table.getPageCount()
+          }
         >
           Last Page
         </button>
