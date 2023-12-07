@@ -135,6 +135,7 @@ import users from "../../MOCK_DATA";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 const Users = () => {
   const data = users;
 
@@ -158,6 +159,14 @@ const Users = () => {
     {
       header: "Username",
       accessorKey: "username",
+    },
+    {
+      header: "Actives",
+      cell: (info) => (
+        <button onClick={() => alert(JSON.stringify(info.row.original))}>
+          <HiOutlineDotsVertical />
+        </button>
+      ),
     },
   ];
 
