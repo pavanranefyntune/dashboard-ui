@@ -282,9 +282,7 @@ const Users = () => {
           First Page
         </button>
         <button
-          className={`p-2 border ${
-            !table.getCanPreviousPage() && " text-gray-400"
-          } `}
+          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
           disabled={!table.getCanPreviousPage()}
           onClick={() => table.previousPage()}
         >
@@ -295,9 +293,7 @@ const Users = () => {
           <span>of {table.getPageCount()}</span>
         </div>
         <button
-          className={`p-2 border ${
-            !table.getCanNextPage() && " text-gray-400"
-          } `}
+          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
           disabled={!table.getCanNextPage()}
           onClick={() => table.nextPage()}
         >
