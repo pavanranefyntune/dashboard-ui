@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MemberDetails from "./components/memberDetails/MemberDetails";
-import Users from "./components/users/Users";
+import Users from "./components/users/Index";
 import { useSelector } from "react-redux";
 import LoginPage from "./pages/Login/LoginPage";
 import Home from "./pages/home/Home";

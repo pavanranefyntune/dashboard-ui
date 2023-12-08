@@ -1,12 +1,5 @@
 const users = [
   {
-    first_name: "Marrilee",
-    last_name: "Durman",
-    email: "mdurman0@alexa.com",
-    gender: "Female",
-    username: "mdurman0",
-  },
-  {
     first_name: "Ofella",
     last_name: "Binny",
     email: "obinny1@w3.org",
