@@ -39,7 +39,7 @@ const App = () => {
           <Route
             path="/users"
             element={
-              <div>
+              <div className="overflow-hidden">
                 <div
                   className={`w-[15vw] fixed top-0 z-40 ${
                     darkMode ? "bg-[#333A45]" : "bg-white"
@@ -47,7 +47,7 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
-                <div className="ms-[15vw]">
+                <div className="ms-[15vw] fixed top-0 z-40">
                   <Navbar />
                 </div>
 

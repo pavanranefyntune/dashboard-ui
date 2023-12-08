@@ -137,7 +137,7 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import { CgMenuCheese } from "react-icons/cg";
+import { IoFilterSharp } from "react-icons/io5";
 const Users = () => {
   const data = users;
 
@@ -165,7 +165,10 @@ const Users = () => {
     {
       header: "Actives",
       cell: (info) => (
-        <button onClick={() => alert(JSON.stringify(info.row.original))}>
+        <button
+          onClick={() => alert(JSON.stringify(info.row.original))}
+          className="text-[#62629C]"
+        >
           <HiOutlineDotsVertical />
         </button>
       ),
@@ -183,6 +186,11 @@ const Users = () => {
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 8,
+      },
+    },
     state: {
       sorting: sorting,
       globalFilter: filtered,
@@ -192,20 +200,21 @@ const Users = () => {
   });
 
   return (
-    <div className="flex flex-col ms-[15vw] w-[85vw] bg-[#EFF3F4] p-4 gap-2 relative ">
-      <div className="flex justify-between p-4">
+    <div className="flex flex-col ms-[15vw] w-[85vw] p-4 gap-2 relative top-[10vh] ">
+      <div className="flex justify-between px-4 py-2">
         <input
           type="text"
           value={filtered}
           onChange={(e) => setFiltered(e.target.value)}
-          className="w-48 rounded-full outline-none px-4 py-1"
+          className="w-48 rounded-full outline-none px-4 py-1 border"
+          placeholder="Search here"
         />
-        <button onClick={() => setToggle(!toggle)}>
-          <CgMenuCheese />
+        <button onClick={() => setToggle(!toggle)} className="text-[#62629C]">
+          <IoFilterSharp className="h-[1.8rem] w-[1.8rem]" />
         </button>
       </div>
       {toggle && (
-        <div className=" border border-black rounded w-72 z-30 absolute right-14 bg-white top-4">
+        <div className=" border-2 border-[#62629C] text-[#3f3e3e] font-bold rounded w-72 z-30 absolute right-16 bg-white top-8">
           <div className="px-1 border-b border-black">
             <label>
               <input
@@ -236,6 +245,9 @@ const Users = () => {
           })}
         </div>
       )}
+      <header className="text-xl font-bold px-4 pb-1 border-b-2 text-[#62629C]">
+        User's Data
+      </header>
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -245,7 +257,7 @@ const Users = () => {
                   key={header.id}
                   onClick={header.column.getToggleSortingHandler()}
                 >
-                  <div className="flex justify-center items-center">
+                  <div className="flex justify-center items-center text-[#3f3e3e]">
                     {flexRender(
                       header.column.columnDef.header,
                       header.getContext()
@@ -265,7 +277,7 @@ const Users = () => {
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="text-center">
+                <td key={cell.id} className="text-center p-2 border-b">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -273,34 +285,39 @@ const Users = () => {
           ))}
         </tbody>
       </table>
-      <div className="flex justify-center p-2 gap-1">
+      <div className="flex justify-center p-2 gap-2 ">
         <button
-          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
+          className="p-2  border-2 border-[#ABA9BB] font-bold text-[#3f3e3e] rounded-xl disabled:cursor-not-allowed disabled:text-gray-500"
           onClick={() => table.setPageIndex(0)}
           disabled={table.getState().pagination.pageIndex + 1 === 1}
         >
           First Page
         </button>
         <button
-          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
+          className="p-2 border-2 border-[#ABA9BB] font-bold text-[#3f3e3e] rounded-xl disabled:cursor-not-allowed disabled:text-gray-400"
           disabled={!table.getCanPreviousPage()}
           onClick={() => table.previousPage()}
         >
           Previous Page
         </button>
-        <div className="flex items-center">
-          <span> {table.getState().pagination.pageIndex + 1}</span>
-          <span>of {table.getPageCount()}</span>
+        <div className="flex items-center gap-1">
+          <span className="font-bold text-[#3f3e3e]">
+            {table.getState().pagination.pageIndex + 1}
+          </span>
+          <span className="font-bold text-[#62629C]"> of </span>
+          <span className="font-bold text-[#3f3e3e]">
+            {table.getPageCount()}
+          </span>
         </div>
         <button
-          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
+          className="p-2 border-2 border-[#ABA9BB] rounded-xl font-bold text-[#3f3e3e] disabled:cursor-not-allowed disabled:text-gray-400"
           disabled={!table.getCanNextPage()}
           onClick={() => table.nextPage()}
         >
           Next Page
         </button>
         <button
-          className="p-2 border disabled:cursor-not-allowed disabled:text-gray-400"
+          className="p-2 border-2 border-[#ABA9BB] rounded-xl font-bold text-[#3f3e3e] disabled:cursor-not-allowed disabled:text-gray-400"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           disabled={
             table.getState().pagination.pageIndex + 1 == table.getPageCount()
