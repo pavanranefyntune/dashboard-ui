@@ -2,9 +2,9 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 // eslint-disable-next-line react/prop-types
-const EditUserModal = ({ show, setShow, row }) => {
+const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
   // eslint-disable-next-line react/prop-types
-  const { first_name, last_name, email, gender, username } = row.original;
+  const { id, first_name, last_name, email, gender, username } = row.original;
 
   const [formData, setFormData] = useState({
     first_name: first_name,
@@ -14,9 +14,17 @@ const EditUserModal = ({ show, setShow, row }) => {
     username: username,
   });
 
-  const handleSubmit = () => {
+  // eslint-disable-next-line react/prop-types
+  const editIndex = data.findIndex((item) => item.id === id);
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const updatedUsers = [...data];
+    updatedUsers.splice(editIndex, 1, formData);
+    setUsersData(updatedUsers);
     setShow(!show);
   };
+
   return (
     <div
       className={
@@ -38,7 +46,7 @@ const EditUserModal = ({ show, setShow, row }) => {
           </div>
           <div className="flex justify-end"></div>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleUpdate}
             className="flex flex-col items-center gap-2"
           >
             <div>

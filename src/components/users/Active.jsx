@@ -35,7 +35,15 @@ export default function Active({ row, data, setUsersData }) {
           </div>
         </Menu.Items>
       </Menu>
-      {show && <EditUserModal show={show} setShow={setShow} row={row} />}
+      {show && (
+        <EditUserModal
+          show={show}
+          setShow={setShow}
+          row={row}
+          data={data}
+          setUsersData={setUsersData}
+        />
+      )}
     </div>
   );
 }

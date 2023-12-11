@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 // eslint-disable-next-line react/prop-types
 const AddUserModal = ({ closeModal, setUsersData, usersData }) => {
   const [formData, setFormData] = useState({
+    id: usersData.length + 1,
     first_name: "",
     last_name: "",
     email: "",
