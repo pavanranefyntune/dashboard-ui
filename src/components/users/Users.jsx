@@ -288,6 +288,7 @@ const Users = ({ openModal, data, Active, setUsersData }) => {
               ))}
             </tr>
           ))}
+          
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (

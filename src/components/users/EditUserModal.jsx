@@ -15,7 +15,7 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
   });
 
   // eslint-disable-next-line react/prop-types
-  const editIndex = data.findIndex((item) => item.id === id);
+  const editIndex = data?.findIndex((item) => item.id === id);
 
   const handleUpdate = (e) => {
     e.preventDefault();

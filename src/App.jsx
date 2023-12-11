@@ -47,7 +47,7 @@ const App = () => {
                 >
                   <SideBar />
                 </div>
-                <div className="ms-[15vw] fixed top-0 z-40">
+                <div className="ms-[15vw] fixed top-0 z-40 bg-[#EFF3F3]">
                   <Navbar />
                 </div>
 

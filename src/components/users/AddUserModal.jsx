@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
-const AddUserModal = ({ closeModal, setUsersData, usersData }) => {
+const AddUserModal = ({
+  // eslint-disable-next-line react/prop-types
+  closeModal,
+  // eslint-disable-next-line react/prop-types
+  setUsersData,
+  // eslint-disable-next-line react/prop-types
+  usersData,
+}) => {
   const [formData, setFormData] = useState({
+    // eslint-disable-next-line react/prop-types
     id: usersData.length + 1,
     first_name: "",
     last_name: "",
@@ -11,10 +20,25 @@ const AddUserModal = ({ closeModal, setUsersData, usersData }) => {
     gender: "",
     username: "",
   });
-  const handleSubmit = () => {
-    setUsersData((usersData) => [formData, ...usersData]);
-    closeModal();
-    console.log(usersData);
+
+  // eslint-disable-next-line react/prop-types
+  const usernamePresent = usersData.some(
+    (user) => user.username.toLowerCase() === formData.username.toLowerCase()
+  );
+
+  const notify = () => {
+    if (usernamePresent) {
+      toast.error("User Already Present");
+    } else {
+      setUsersData((prevUsersData) => [formData, ...prevUsersData]);
+      toast.success("User Added Successfully");
+      closeModal();
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    notify();
   };
 
   return (
