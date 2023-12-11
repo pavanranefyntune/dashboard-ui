@@ -191,7 +191,7 @@ const Users = ({ openModal, data }) => {
     initialState: {
       pagination: {
         pageSize: 8,
-      },
+      }, 
     },
     state: {
       sorting: sorting,
