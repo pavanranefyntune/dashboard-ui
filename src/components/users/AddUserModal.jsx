@@ -11,11 +11,10 @@ const AddUserModal = ({ closeModal, setUsersData, usersData }) => {
     username: "",
   });
   const handleSubmit = () => {
-    setUsersData((usersData) => [...usersData, formData]);
+    setUsersData((usersData) => [formData, ...usersData]);
     closeModal();
+    console.log(usersData);
   };
-
-  console.log(usersData);
 
   return (
     <div

@@ -141,7 +141,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 
 // eslint-disable-next-line react/prop-types
-const Users = ({ openModal, data }) => {
+const Users = ({ openModal, data, Active, setUsersData }) => {
   const columns = [
     {
       header: "First Name",
@@ -166,13 +166,10 @@ const Users = ({ openModal, data }) => {
 
     {
       header: "Actives",
-      cell: (info) => (
-        <button
-          onClick={() => alert(JSON.stringify(info.row.original))}
-          className="text-[#62629C]"
-        >
-          <HiOutlineDotsVertical />
-        </button>
+      cell: ({ row }) => (
+        <div>
+          <Active row={row} data={data} setUsersData={setUsersData} />
+        </div>
       ),
     },
   ];
@@ -191,7 +188,7 @@ const Users = ({ openModal, data }) => {
     initialState: {
       pagination: {
         pageSize: 8,
-      }, 
+      },
     },
     state: {
       sorting: sorting,
