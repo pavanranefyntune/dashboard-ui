@@ -27,6 +27,8 @@ const AddUserModal = ({
   );
 
   const notify = () => {
+    console.log(usernamePresent
+      );
     if (usernamePresent) {
       toast.error("User Already Present");
     } else {

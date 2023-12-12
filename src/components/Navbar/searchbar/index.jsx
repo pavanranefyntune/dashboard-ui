@@ -13,10 +13,8 @@ export default function Searchbar() {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter" && show) {
-      console.log("selected ", selected);
       event.preventDefault();
       const selectedOption = filteredList.find((item) => item === selected);
-      console.log("selectedOption ", selectedOption);
       if (selectedOption) {
         navigate(selectedOption.path);
       }
@@ -66,10 +64,10 @@ export default function Searchbar() {
               ) : (
                 filteredList.map((item) => (
                   <Combobox.Option
-                    onClick={() => navigate(item.path)}
                     key={item.id}
+                    onClick={() => navigate(item.path)}
                     className={({ active }) =>
-                      `relative select-none py-2 pl-10 pr-4 cursor-pointer ${
+                      `relative select-none py-2 pl-10 pr-4 cursor-pointer hover:bg-teal-600 hover:text-white ${
                         active ? "bg-teal-600 text-white" : "text-gray-900"
                       }`
                     }
