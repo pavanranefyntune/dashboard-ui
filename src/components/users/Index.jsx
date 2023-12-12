@@ -1,12 +1,14 @@
 import AddUserModal from "./AddUserModal";
 import Users from "./Users";
 import { useState } from "react";
-import users from "../../MOCK_DATA";
+import useTable from "./custom hooks/useTable";
+
 import Active from "./Active";
 import { Toaster } from "react-hot-toast";
 const Index = () => {
   const [show, setShow] = useState(false);
-  const [usersData, setUsersData] = useState(users);
+
+  const { usersData, setUsersData } = useTable();
 
   const openModal = () => {
     setShow(true);
