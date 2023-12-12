@@ -1,5 +1,7 @@
-import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
@@ -7,39 +9,41 @@ const AddUserModal = ({
   // eslint-disable-next-line react/prop-types
   closeModal,
   // eslint-disable-next-line react/prop-types
-  setUsersData,
-  // eslint-disable-next-line react/prop-types
   usersData,
+  // eslint-disable-next-line react/prop-types
+  setUsersData,
 }) => {
-  const [formData, setFormData] = useState({
-    // eslint-disable-next-line react/prop-types
-    id: usersData.length + 1,
-    first_name: "",
-    email: "",
-    gender: "",
-    username: "",
+  const schema = yup.object().shape({
+    first_name: yup.string().required("First Name is required"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    gender: yup
+      .string()
+      .oneOf(["male", "female"])
+      .required("Gender is required"),
+    username: yup.string().required("Username is required"),
   });
 
-  // eslint-disable-next-line react/prop-types
-  const usernamePresent = usersData.some(
-    (user) => user.username.toLowerCase() === formData.username.toLowerCase()
-  );
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const notify = () => {
-    console.log(usernamePresent);
+  const onSubmit = (data) => {
+    // eslint-disable-next-line react/prop-types
+    const usernamePresent = usersData.some(
+      (user) => user.username.toLowerCase() === data.username.toLowerCase()
+    );
     if (usernamePresent) {
       toast.error("User Already Present");
       closeModal();
     } else {
-      setUsersData((prevUsersData) => [formData, ...prevUsersData]);
+      setUsersData([data, ...usersData]);
       toast.success("User Added Successfully");
       closeModal();
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    notify();
   };
 
   return (
@@ -59,87 +63,74 @@ const AddUserModal = ({
               <AiOutlineClose />
             </button>
           </div>
-          <div className="flex justify-end"></div>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center gap-2"
           >
             <div>
               <input
                 type="text"
-                value={formData.first_name}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    first_name: e.target.value,
-                  }))
-                }
+                {...register("first_name")}
                 placeholder="Enter First Name"
                 className="mt-1 p-2 w-full border rounded-md"
               />
+              {errors.first_name && (
+                <p className="text-center text-red-500">
+                  {errors.first_name.message}
+                </p>
+              )}
             </div>
             <div>
               <input
-                type="text"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    email: e.target.value,
-                  }))
-                }
+                type="email"
+                {...register("email")}
                 placeholder="Enter Email"
                 className="mt-1 p-2 w-full border rounded-md"
               />
+              {errors.email && (
+                <p className="text-center text-red-500">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div>
               <label>Gender:</label>
               <div>
-                <input
-                  type="radio"
-                  value="male"
-                  checked={formData.gender === "male"}
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      gender: e.target.value,
-                    }))
-                  }
-                />
+                <input type="radio" {...register("gender")} value="male" />
                 <label htmlFor="male" className="ml-1">
                   Male
                 </label>
 
                 <input
                   type="radio"
+                  {...register("gender")}
                   value="female"
-                  checked={formData.gender === "female"}
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      gender: e.target.value,
-                    }))
-                  }
                   className="ml-4"
                 />
                 <label htmlFor="female" className="ml-1">
                   Female
                 </label>
+                \
+                
               </div>
+              {errors.gender && (
+                <p className="text-center text-red-500">
+                  {errors.gender.message}
+                </p>
+              )}
             </div>
             <div>
               <input
                 type="text"
-                value={formData.username}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    username: e.target.value,
-                  }))
-                }
+                {...register("username")}
                 placeholder="Enter Username"
                 className="mt-1 p-2 w-full border rounded-md"
               />
+              {errors.username && (
+                <p className="text-center text-red-500">
+                  {errors.username.message}
+                </p>
+              )}
             </div>
             <div className="mt-4">
               <button

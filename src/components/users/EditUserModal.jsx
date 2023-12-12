@@ -43,7 +43,6 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
               <AiOutlineClose />
             </button>
           </div>
-          <div className="flex justify-end"></div>
           <form
             onSubmit={handleUpdate}
             className="flex flex-col items-center gap-2"
@@ -64,7 +63,7 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
             </div>
             <div>
               <input
-                type="text"
+                type="email"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData((prevState) => ({
