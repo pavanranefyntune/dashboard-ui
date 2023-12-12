@@ -27,10 +27,10 @@ const AddUserModal = ({
   );
 
   const notify = () => {
-    console.log(usernamePresent
-      );
+    console.log(usernamePresent);
     if (usernamePresent) {
       toast.error("User Already Present");
+      closeModal();
     } else {
       setUsersData((prevUsersData) => [formData, ...prevUsersData]);
       toast.success("User Added Successfully");
