@@ -18,12 +18,19 @@ import FilterBox from "./FilterBox";
 const Users = ({ openModal, data, Active, setUsersData }) => {
   const columns = [
     {
-      header: "First Name",
-      accessorKey: "first_name",
+      header: "Id",
+      accessorKey: "id",
+      cell: ({ row }) => {
+        return (
+          <>
+            <span>{row.index + 1}</span>
+          </>
+        );
+      },
     },
     {
-      header: "Last Name",
-      accessorKey: "last_name",
+      header: "First Name",
+      accessorKey: "first_name",
     },
     {
       header: "Email",
@@ -110,11 +117,11 @@ const Users = ({ openModal, data, Active, setUsersData }) => {
 
       <table>
         <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="bg-[#ABA9BB] p-2">
-              {headerGroup.headers.map((header) => (
+          {table.getHeaderGroups().map((headerGroup, index) => (
+            <tr key={index} className="bg-[#ABA9BB] p-2">
+              {headerGroup.headers.map((header, index) => (
                 <th
-                  key={header.id}
+                  key={index}
                   onClick={header.column.getToggleSortingHandler()}
                 >
                   <div className="flex justify-center items-center text-[#3f3e3e] ">
@@ -134,10 +141,10 @@ const Users = ({ openModal, data, Active, setUsersData }) => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="text-center p-2 border-b">
+          {table.getRowModel().rows.map((row, index) => (
+            <tr key={index}>
+              {row.getVisibleCells().map((cell, index) => (
+                <td key={index} className="text-center p-2 border-b">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

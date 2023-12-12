@@ -4,11 +4,10 @@ import { AiOutlineClose } from "react-icons/ai";
 // eslint-disable-next-line react/prop-types
 const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
   // eslint-disable-next-line react/prop-types
-  const { id, first_name, last_name, email, gender, username } = row.original;
+  const { id, first_name, email, gender, username } = row.original;
 
   const [formData, setFormData] = useState({
     first_name: first_name,
-    last_name: last_name,
     email: email,
     gender: gender,
     username: username,
@@ -60,20 +59,6 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
                   }))
                 }
                 placeholder="Enter First Name"
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                value={formData.last_name}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    last_name: e.target.value,
-                  }))
-                }
-                placeholder="Enter Last Name"
                 className="mt-1 p-2 w-full border rounded-md"
               />
             </div>

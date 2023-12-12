@@ -15,7 +15,6 @@ const AddUserModal = ({
     // eslint-disable-next-line react/prop-types
     id: usersData.length + 1,
     first_name: "",
-    last_name: "",
     email: "",
     gender: "",
     username: "",
@@ -76,20 +75,6 @@ const AddUserModal = ({
                   }))
                 }
                 placeholder="Enter First Name"
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                value={formData.last_name}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    last_name: e.target.value,
-                  }))
-                }
-                placeholder="Enter Last Name"
                 className="mt-1 p-2 w-full border rounded-md"
               />
             </div>
