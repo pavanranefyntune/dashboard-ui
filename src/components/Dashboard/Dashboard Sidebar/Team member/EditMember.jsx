@@ -1,26 +1,12 @@
-import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUpdateMember from "./custom hooks/useUpdateMember";
 import UserForm from "../../../Forms/UserForm";
-import * as yup from "yup";
+
 // eslint-disable-next-line react/prop-types
 const EditMember = ({ pass, closeEditModal }) => {
   // eslint-disable-next-line react/prop-types
   const { id, name, email, gender, status } = pass;
-
-  const schema = yup.object().shape({
-    first_name: yup.string().required("First Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    gender: yup
-      .string()
-      .oneOf(["male", "female"])
-      .required("Gender is required"),
-    status: yup
-      .string()
-      .oneOf(["active", "inactive"])
-      .required("status is required"),
-  });
 
   const queryClient = useQueryClient();
 
@@ -90,7 +76,6 @@ const EditMember = ({ pass, closeEditModal }) => {
           <UserForm
             onSubmit={handleSubmit}
             defaultValues={defaultValues}
-            schema={schema}
             formFields={formFields}
           />
         </div>

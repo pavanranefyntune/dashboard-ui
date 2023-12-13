@@ -1,18 +1,7 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
-import * as yup from "yup";
 import UserForm from "../Forms/UserForm";
 const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
-  const schema = yup.object().shape({
-    first_name: yup.string().required("First Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    gender: yup
-      .string()
-      .oneOf(["Male", "Female"])
-      .required("Gender is required"),
-    username: yup.string().required("Username is required"),
-  });
-
   const { id, first_name, email, gender, username } = row.original;
 
   const editIndex = data?.findIndex((item) => item.id === id);
@@ -68,7 +57,6 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
           <UserForm
             onSubmit={handleUpdate}
             formFields={formFields}
-            schema={schema}
             defaultValues={defaultValues}
           />
         </div>

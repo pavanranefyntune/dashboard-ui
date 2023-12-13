@@ -1,20 +1,9 @@
 /* eslint-disable react/prop-types */
 import { AiOutlineClose } from "react-icons/ai";
-import * as yup from "yup";
 import toast from "react-hot-toast";
 import UserForm from "../Forms/UserForm";
 
 const AddUserModal = ({ closeModal, usersData, setUsersData }) => {
-  const schema = yup.object().shape({
-    first_name: yup.string().required("First Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    gender: yup
-      .string()
-      .oneOf(["Male", "Female"])
-      .required("Gender is required"),
-    username: yup.string().required("Username is required"),
-  });
-
   const onSubmit = (data) => {
     const usernamePresent = usersData.some(
       (user) => user.username.toLowerCase() === data.username.toLowerCase()
@@ -61,11 +50,7 @@ const AddUserModal = ({ closeModal, usersData, setUsersData }) => {
               <AiOutlineClose />
             </button>
           </div>
-          <UserForm
-            schema={schema}
-            onSubmit={onSubmit}
-            formFields={formFields}
-          />
+          <UserForm onSubmit={onSubmit} formFields={formFields} />
         </div>
       </div>
     </div>

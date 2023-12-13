@@ -1,14 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
-const UserForm = ({ schema, onSubmit, formFields, defaultValues }) => {
+const UserForm = ({ onSubmit, formFields, defaultValues }) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
     defaultValues: defaultValues,
   });
 
@@ -32,11 +30,11 @@ const UserForm = ({ schema, onSubmit, formFields, defaultValues }) => {
                   <label>{option.label}</label>
                 </div>
               ))}
-              {errors[field.name] && (
+              {/* {errors[field.name] && (
                 <p className="text-center text-red-500">
                   {errors[field.name].message}
                 </p>
-              )}
+              )} */}
             </div>
           ) : (
             <div key={index}>
@@ -45,11 +43,11 @@ const UserForm = ({ schema, onSubmit, formFields, defaultValues }) => {
                 {...register(field.name)}
                 placeholder={field.placeholder}
               />
-              {errors[field.name] && (
+              {/* {errors[field.name] && (
                 <p className="text-center text-red-500">
                   {errors[field.name].message}
                 </p>
-              )}
+              )} */}
             </div>
           )
         )}

@@ -2,23 +2,9 @@ import useAddMember from "./custom hooks/useAddMember";
 import { AiOutlineClose } from "react-icons/ai";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import UserForm from "../../../Forms/UserForm";
-import * as yup from "yup";
 
 // eslint-disable-next-line react/prop-types
 const MemberModal = ({ closeModal }) => {
-  const schema = yup.object().shape({
-    first_name: yup.string().required("First Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    gender: yup
-      .string()
-      .oneOf(["male", "female"])
-      .required("Gender is required"),
-    status: yup
-      .string()
-      .oneOf(["active", "inactive"])
-      .required("status is required"),
-  });
-
   const { createMembers } = useAddMember();
 
   const queryClient = useQueryClient();
@@ -30,10 +16,8 @@ const MemberModal = ({ closeModal }) => {
   });
 
   const handleSubmit = (data) => {
-    console.log("member created ", data);
     closeModal();
     createMemberMutation.mutate(data);
-    console.log("member created");
   };
 
   const formFields = [
@@ -79,11 +63,7 @@ const MemberModal = ({ closeModal }) => {
             </button>
           </div>
           <div className="flex justify-end"></div>
-          <UserForm
-            onSubmit={handleSubmit}
-            formFields={formFields}
-            schema={schema}
-          />
+          <UserForm onSubmit={handleSubmit} formFields={formFields} />
         </div>
       </div>
     </div>
