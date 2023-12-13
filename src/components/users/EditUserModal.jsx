@@ -1,9 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-
-// eslint-disable-next-line react/prop-types
 const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
-  // eslint-disable-next-line react/prop-types
   const { id, first_name, email, gender, username } = row.original;
 
   const [formData, setFormData] = useState({
@@ -13,7 +11,6 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
     username: username,
   });
 
-  // eslint-disable-next-line react/prop-types
   const editIndex = data?.findIndex((item) => item.id === id);
 
   const handleUpdate = (e) => {
