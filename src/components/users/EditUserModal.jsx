@@ -27,9 +27,24 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
   const formFields = [
     { name: "first_name", type: "text", placeholder: "Enter First Name" },
     { name: "email", type: "email", placeholder: "Enter Email" },
-    { name: "gender", type: "radio", placeholder: "Enter Gender" },
+    {
+      name: "gender",
+      type: "radio",
+      label: "Gender",
+      options: [
+        { value: "Male", label: "Male" },
+        { value: "Female", label: "Female" },
+      ],
+    },
     { name: "username", type: "text", placeholder: "Enter Username" },
   ];
+
+  const defaultValues = {
+    first_name: first_name || "",
+    email: email || "",
+    gender: gender || "",
+    username: username || "",
+  };
 
   return (
     <div
@@ -54,10 +69,7 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
             onSubmit={handleUpdate}
             formFields={formFields}
             schema={schema}
-            first_name={first_name}
-            email={email}
-            gender={gender}
-            username={username}
+            defaultValues={defaultValues}
           />
         </div>
       </div>

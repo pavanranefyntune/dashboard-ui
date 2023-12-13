@@ -2,27 +2,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const UserForm = ({
-  schema,
-  onSubmit,
-  formFields,
-  first_name,
-  email,
-  gender,
-  username,
-}) => {
+const UserForm = ({ schema, onSubmit, formFields, defaultValues }) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      first_name: first_name,
-      email: email,
-      gender: gender,
-      username: username,
-    },
+    defaultValues: defaultValues,
   });
 
   return (
@@ -34,27 +21,17 @@ const UserForm = ({
         {formFields.map((field, index) =>
           field.type === "radio" ? (
             <div key={index}>
-              <label>Gender:</label>
-              <div>
-                <input
-                  type={field.type}
-                  {...register(field.name)}
-                  value="Male"
-                />
-                <label htmlFor="Male" className="ml-1">
-                  Male
-                </label>
-
-                <input
-                  type={field.type}
-                  {...register(field.name)}
-                  value="Female"
-                  className="ml-4"
-                />
-                <label htmlFor="Female" className="ml-1">
-                  Female
-                </label>
-              </div>
+              <label>{field.label}</label>
+              {field?.options?.map((option, index) => (
+                <div key={index}>
+                  <input
+                    type={field.type}
+                    {...register(field.name)}
+                    value={option.value}
+                  />
+                  <label>{option.label}</label>
+                </div>
+              ))}
               {errors[field.name] && (
                 <p className="text-center text-red-500">
                   {errors[field.name].message}
