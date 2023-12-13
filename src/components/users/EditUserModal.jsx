@@ -1,25 +1,35 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import * as yup from "yup";
+import UserForm from "../Forms/UserForm";
 const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
-  const { id, first_name, email, gender, username } = row.original;
-
-  const [formData, setFormData] = useState({
-    first_name: first_name,
-    email: email,
-    gender: gender,
-    username: username,
+  const schema = yup.object().shape({
+    first_name: yup.string().required("First Name is required"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    gender: yup
+      .string()
+      .oneOf(["Male", "Female"])
+      .required("Gender is required"),
+    username: yup.string().required("Username is required"),
   });
+
+  const { id, first_name, email, gender, username } = row.original;
 
   const editIndex = data?.findIndex((item) => item.id === id);
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+  const handleUpdate = (userData) => {
     const updatedUsers = [...data];
-    updatedUsers.splice(editIndex, 1, formData);
+    updatedUsers.splice(editIndex, 1, userData);
     setUsersData(updatedUsers);
     setShow(!show);
   };
+
+  const formFields = [
+    { name: "first_name", type: "text", placeholder: "Enter First Name" },
+    { name: "email", type: "email", placeholder: "Enter Email" },
+    { name: "gender", type: "radio", placeholder: "Enter Gender" },
+    { name: "username", type: "text", placeholder: "Enter Username" },
+  ];
 
   return (
     <div
@@ -40,96 +50,15 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
               <AiOutlineClose />
             </button>
           </div>
-          <form
+          <UserForm
             onSubmit={handleUpdate}
-            className="flex flex-col items-center gap-2"
-          >
-            <div>
-              <input
-                type="text"
-                value={formData.first_name}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    first_name: e.target.value,
-                  }))
-                }
-                placeholder="Enter First Name"
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    email: e.target.value,
-                  }))
-                }
-                placeholder="Enter Email"
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
-            <div>
-              <label>Gender:</label>
-              <div>
-                <input
-                  type="radio"
-                  value="male"
-                  checked={formData.gender === "male"}
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      gender: e.target.value,
-                    }))
-                  }
-                />
-                <label htmlFor="male" className="ml-1">
-                  Male
-                </label>
-
-                <input
-                  type="radio"
-                  value="female"
-                  checked={formData.gender === "female"}
-                  onChange={(e) =>
-                    setFormData((prevState) => ({
-                      ...prevState,
-                      gender: e.target.value,
-                    }))
-                  }
-                  className="ml-4"
-                />
-                <label htmlFor="female" className="ml-1">
-                  Female
-                </label>
-              </div>
-            </div>
-            <div>
-              <input
-                type="text"
-                value={formData.username}
-                onChange={(e) =>
-                  setFormData((prevState) => ({
-                    ...prevState,
-                    username: e.target.value,
-                  }))
-                }
-                placeholder="Enter Username"
-                className="mt-1 p-2 w-full border rounded-md"
-              />
-            </div>
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="bg-black text-white px-4 py-2 rounded-md"
-              >
-                Edit
-              </button>
-            </div>
-          </form>
+            formFields={formFields}
+            schema={schema}
+            first_name={first_name}
+            email={email}
+            gender={gender}
+            username={username}
+          />
         </div>
       </div>
     </div>

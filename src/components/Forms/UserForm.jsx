@@ -2,13 +2,27 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const UserForm = ({ schema, onSubmit, formFields }) => {
+const UserForm = ({
+  schema,
+  onSubmit,
+  formFields,
+  first_name,
+  email,
+  gender,
+  username,
+}) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      first_name: first_name,
+      email: email,
+      gender: gender,
+      username: username,
+    },
   });
 
   return (
@@ -25,19 +39,19 @@ const UserForm = ({ schema, onSubmit, formFields }) => {
                 <input
                   type={field.type}
                   {...register(field.name)}
-                  value="male"
+                  value="Male"
                 />
-                <label htmlFor="male" className="ml-1">
+                <label htmlFor="Male" className="ml-1">
                   Male
                 </label>
 
                 <input
                   type={field.type}
                   {...register(field.name)}
-                  value="female"
+                  value="Female"
                   className="ml-4"
                 />
-                <label htmlFor="female" className="ml-1">
+                <label htmlFor="Female" className="ml-1">
                   Female
                 </label>
               </div>

@@ -10,7 +10,7 @@ const AddUserModal = ({ closeModal, usersData, setUsersData }) => {
     email: yup.string().email("Invalid email").required("Email is required"),
     gender: yup
       .string()
-      .oneOf(["male", "female"])
+      .oneOf(["Male", "Female"])
       .required("Gender is required"),
     username: yup.string().required("Username is required"),
   });
