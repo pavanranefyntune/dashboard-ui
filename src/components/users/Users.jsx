@@ -46,7 +46,7 @@ const Users = ({ openModal, data, Active, setUsersData }) => {
     },
 
     {
-      header: "Actives",
+      header: "Actions",
       cell: ({ row }) => (
         <div>
           <Active row={row} data={data} setUsersData={setUsersData} />

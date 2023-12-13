@@ -24,13 +24,24 @@ export default function Active({ row, data, setUsersData }) {
           <HiOutlineDotsVertical />
         </Menu.Button>
         <Menu.Items>
-          <div className="bg-[#ABA9BB] flex justify-center  items-center p-1 rounded-md cursor absolute top-0">
+          <div className="bg-[#ABA9BB] flex justify-center  items-center p-1 rounded-md cursor absolute top-0 right-12">
             <Menu.Item
               as="a"
               className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black cursor-pointer"
             >
-              <MdEditSquare onClick={() => setShow(!show)} />
-              <MdDelete onClick={handleDelete} />
+              <div className="flex justify-center items-center flex-col">
+                <div className="flex justify-center items-center  flex-col">
+                  <MdEditSquare
+                    onClick={() => setShow(!show)}
+                    className="w-6 h-6"
+                  />
+                  <p className="text-gray-600">Edit</p>
+                </div>
+                <div className="flex justify-center items-center  flex-col">
+                  <MdDelete onClick={handleDelete} className="w-6 h-6" />
+                  <p className="text-red-500">Delete</p>
+                </div>
+              </div>
             </Menu.Item>
           </div>
         </Menu.Items>
