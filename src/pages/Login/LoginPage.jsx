@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
+import UserForm from "../../components/Forms/UserForm";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -21,57 +21,44 @@ const LoginPage = () => {
     navigate("/");
   };
 
-  const [value, setValue] = useState({
+  const defaultValues = {
     email: "",
     password: "",
     device_name: "MacIntel",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValue((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = (value) => {
     loginMember(value);
   };
+
+  const formFields = [
+    {
+      name: "email",
+      type: "email",
+      placeholder: "Enter Email",
+      pattern: {
+        value: /^[a-z0-9._%+-]+@[a-z.-]+\.[a-z]{2,}$/,
+        message: "Please enter a valid Email",
+      },
+    },
+
+    {
+      name: "password",
+      type: "password",
+      placeholder: "Enter passsword",
+    },
+  ];
 
   return (
     <div className="flex flex-col justify-center items-center ">
       <div className="font-bold text-lg text-green-500">NIOND</div>
       <div className="flex flex-col text-center gap-6 p-6">
         <header className="font-bold text-xl">Member Login</header>
-        <form
+        <UserForm
+          defaultValues={defaultValues}
           onSubmit={handleLogin}
-          className="flex flex-col items-center justify-center gap-4"
-        >
-          <input
-            type="text"
-            name="email"
-            value={value.email}
-            onChange={handleInputChange}
-            placeholder="Email"
-            className="rounded-sm p-2"
-          />
-          <input
-            type="password"
-            name="password"
-            value={value.password}
-            onChange={handleInputChange}
-            placeholder="Password"
-            className="rounded-sm p-2"
-          />
-          <button
-            type="submit"
-            className="font-bold bg-green-500 py-2 px-8 rounded-full"
-          >
-            Login
-          </button>
-        </form>
+          formFields={formFields}
+        />
       </div>
     </div>
   );
