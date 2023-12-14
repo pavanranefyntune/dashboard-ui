@@ -2,12 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const LoginPage = () => {
-
   const navigate = useNavigate();
 
   const loginMember = async (value) => {
     const response = await fetch(
-      "https://uatapicorporatetravel.fynity.in/api/login",
+      "https://uatapicorporatetravel.fynity.in/api/sellers/login",
       {
         method: "POST",
         headers: {
@@ -18,16 +17,14 @@ const LoginPage = () => {
       }
     );
     const result = await response.json();
-    localStorage.setItem("token", result.token)
+    localStorage.setItem("token", result.token);
     navigate("/");
-
   };
 
   const [value, setValue] = useState({
-
     email: "",
     password: "",
-    device_name: "windows",
+    device_name: "MacIntel",
   });
 
   const handleInputChange = (e) => {

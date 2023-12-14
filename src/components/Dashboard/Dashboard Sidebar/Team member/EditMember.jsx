@@ -2,6 +2,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useUpdateMember from "./custom hooks/useUpdateMember";
 import UserForm from "../../../Forms/UserForm";
+import formFields from "./forFields.constant";
 
 // eslint-disable-next-line react/prop-types
 const EditMember = ({ pass, closeEditModal }) => {
@@ -24,34 +25,11 @@ const EditMember = ({ pass, closeEditModal }) => {
   };
 
   const defaultValues = {
-    name: name,
-    email: email,
-    gender: gender,
-    status: status,
+    name: name || "",
+    email: email || "",
+    gender: gender || "",
+    status: status || "",
   };
-
-  const formFields = [
-    { name: "name", type: "text", placeholder: "Enter First Name" },
-    { name: "email", type: "email", placeholder: "Enter Email" },
-    {
-      name: "gender",
-      type: "radio",
-      label: "Gender",
-      options: [
-        { value: "male", label: "Male" },
-        { value: "female", label: "Female" },
-      ],
-    },
-    {
-      name: "status",
-      type: "radio",
-      label: "Status",
-      options: [
-        { value: "active", label: "Active" },
-        { value: "inactive", label: "Inactive" },
-      ],
-    },
-  ];
 
   return (
     <div

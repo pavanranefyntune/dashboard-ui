@@ -14,8 +14,24 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
   };
 
   const formFields = [
-    { name: "first_name", type: "text", placeholder: "Enter First Name" },
-    { name: "email", type: "email", placeholder: "Enter Email" },
+    {
+      name: "first_name",
+      type: "text",
+      placeholder: "Enter First Name",
+      pattern: {
+        value: /^[A-Za-z\s]+$/,
+        message: "Please enter a valid name",
+      },
+    },
+    {
+      name: "email",
+      type: "email",
+      placeholder: "Enter Email",
+      pattern: {
+        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        message: "Please enter a valid Email",
+      },
+    },
     {
       name: "gender",
       type: "radio",
@@ -25,7 +41,15 @@ const EditUserModal = ({ show, setShow, row, data, setUsersData }) => {
         { value: "Female", label: "Female" },
       ],
     },
-    { name: "username", type: "text", placeholder: "Enter Username" },
+    {
+      name: "username",
+      type: "text",
+      placeholder: "Enter Username",
+      pattern: {
+        value: /^[a-zA-Z0-9_.]{3,30}$/,
+        message: "Please enter a valid username",
+      },
+    },
   ];
 
   const defaultValues = {

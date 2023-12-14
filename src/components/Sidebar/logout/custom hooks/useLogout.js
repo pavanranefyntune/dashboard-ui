@@ -8,7 +8,7 @@ function useLogout() {
 
   const logoutUser = async () => {
     const response = await axios.post(
-      "https://uatapicorporatetravel.fynity.in/api/logout",
+      "https://uatapicorporatetravel.fynity.in/api/sellers/logout",
       {},
       {
         headers: {
@@ -17,7 +17,6 @@ function useLogout() {
         },
       }
     );
-
     return response;
   };
 
