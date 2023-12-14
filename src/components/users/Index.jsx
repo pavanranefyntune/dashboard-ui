@@ -33,13 +33,12 @@ const Index = () => {
         />
       )}
       <Toaster
-        position="bottom-right"
+        position="bottom-left"
         reverseOrder={false}
         gutter={8}
         containerClassName=""
         containerStyle={{}}
         toastOptions={{
-          // Define default options
           className: "",
           duration: 5000,
           style: {
@@ -47,7 +46,6 @@ const Index = () => {
             color: "#fff",
           },
 
-          // Default options for specific types
           success: {
             duration: 3000,
             theme: {

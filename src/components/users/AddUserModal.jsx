@@ -2,6 +2,7 @@
 import { AiOutlineClose } from "react-icons/ai";
 import toast from "react-hot-toast";
 import UserForm from "../Forms/UserForm";
+import { IoIosClose } from "react-icons/io";
 
 const AddUserModal = ({ closeModal, usersData, setUsersData }) => {
   const onSubmit = (data) => {
@@ -9,11 +10,31 @@ const AddUserModal = ({ closeModal, usersData, setUsersData }) => {
       (user) => user.username.toLowerCase() === data.username.toLowerCase()
     );
     if (usernamePresent) {
-      toast.error("User Already Present");
+      toast.error(
+        <div className="flex gap-2">
+          <p>User Already Present</p>
+          <button
+            onClick={() => toast.dismiss()}
+            className="border border-white rounded-full"
+          >
+            <IoIosClose />
+          </button>
+        </div>
+      );
       closeModal();
     } else {
       setUsersData([data, ...usersData]);
-      toast.success("User Added Successfully");
+      toast.success(
+        <div className="flex gap-2">
+          <p>User Added Successfully</p>
+          <button
+            onClick={() => toast.dismiss()}
+            className="border border-white rounded-full"
+          >
+            <IoIosClose />
+          </button>
+        </div>
+      );
       closeModal();
     }
   };

@@ -24,7 +24,7 @@ export default function Active({ row, data, setUsersData }) {
           <HiOutlineDotsVertical />
         </Menu.Button>
         <Menu.Items>
-          <div className="bg-[#ABA9BB] flex justify-center  items-center p-1 rounded-md cursor absolute top-0 right-12">
+          <div className="bg-[#ABA9BB] flex justify-center  items-center p-1 rounded-md cursor absolute top-0 right-14">
             <Menu.Item
               as="a"
               className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black cursor-pointer"
