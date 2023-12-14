@@ -29,6 +29,7 @@ const EditMember = ({ pass, closeEditModal }) => {
     email: email || "",
     gender: gender || "",
     status: status || "",
+    id: id,
   };
 
   return (
