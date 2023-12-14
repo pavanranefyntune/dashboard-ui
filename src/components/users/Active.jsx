@@ -30,16 +30,19 @@ export default function Active({ row, data, setUsersData }) {
               className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black cursor-pointer"
             >
               <div className="flex justify-center items-center flex-col">
-                <div className="flex justify-center items-center  flex-col">
-                  <MdEditSquare
-                    onClick={() => setShow(!show)}
-                    className="w-6 h-6"
-                  />
+                <div
+                  onClick={() => setShow(!show)}
+                  className="flex justify-center items-center  flex-col"
+                >
+                  <MdEditSquare className="w-6 h-6" />
                   <p className="text-gray-600">Edit</p>
                 </div>
-                <div className="flex justify-center items-center  flex-col">
-                  <MdDelete onClick={handleDelete} className="w-6 h-6" />
-                  <p className="text-red-500">Delete</p>
+                <div
+                  onClick={handleDelete}
+                  className="flex justify-center items-center  flex-col"
+                >
+                  <MdDelete className="w-6 h-6" />
+                  <p className="text-[#cf4f4f]">Delete</p>
                 </div>
               </div>
             </Menu.Item>

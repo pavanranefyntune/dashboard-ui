@@ -30,24 +30,27 @@ const UserForm = ({ onSubmit, formFields, defaultValues }) => {
                   <label>{option.label}</label>
                 </div>
               ))}
-              {/* {errors[field.name] && (
+              {errors[field.name] && (
                 <p className="text-center text-red-500">
                   {errors[field.name].message}
                 </p>
-              )} */}
+              )}
             </div>
           ) : (
             <div key={index}>
               <input
                 type={field.type}
-                {...register(field.name)}
+                {...register(field.name, {
+                  required: `${field.name} is required`,
+                  pattern: field.pattern,
+                })}
                 placeholder={field.placeholder}
               />
-              {/* {errors[field.name] && (
+              {errors[field.name] && (
                 <p className="text-center text-red-500">
                   {errors[field.name].message}
                 </p>
-              )} */}
+              )}
             </div>
           )
         )}
