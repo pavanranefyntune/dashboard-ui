@@ -31,6 +31,14 @@ const Users = ({ openModal, data, Active, setUsersData }) => {
     {
       header: "First Name",
       accessorKey: "first_name",
+      cell: ({ row }) => {
+        return (
+          <div className="flex justify-center items-center">
+            <img src={row.original.image} alt={row.original.first_name} />
+            <p>{row.original.first_name}</p>
+          </div>
+        );
+      },
     },
     {
       header: "Email",

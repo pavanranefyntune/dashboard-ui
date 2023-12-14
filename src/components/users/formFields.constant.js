@@ -1,5 +1,9 @@
 const formFields = [
   {
+    name: "image",
+    type: "file",
+  },
+  {
     name: "first_name",
     type: "text",
     placeholder: "Enter First Name",
